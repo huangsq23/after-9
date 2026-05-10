@@ -1,8 +1,10 @@
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 const STORE_EMAIL = 'Jiuhou2023@gmail.com'
+
+function getResend() {
+  return new Resend(process.env.RESEND_API_KEY)
+}
 const FROM = 'After 9 <onboarding@resend.dev>'
 
 export async function sendKtvEmails({
@@ -46,6 +48,7 @@ export async function sendKtvEmails({
     <p style="color:#777;font-size:14px;margin-top:16px;"><strong>Customer:</strong> ${customerName} &lt;${customerEmail}&gt;</p>
   `)
 
+  const resend = getResend()
   await Promise.all([
     resend.emails.send({
       from: FROM,
@@ -98,6 +101,7 @@ export async function sendDiningEmails({
     <p style="color:#777;font-size:14px;margin-top:16px;"><strong>Customer:</strong> ${customerName} &lt;${customerEmail}&gt;</p>
   `)
 
+  const resend = getResend()
   await Promise.all([
     resend.emails.send({
       from: FROM,
