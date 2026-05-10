@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
       date: data.date,
       time: data.time,
       guests: data.guests,
-      dietaryNotes: data.dietaryNotes,
+      dietaryNotes: data.dietary,
     })
 
     return NextResponse.json({
