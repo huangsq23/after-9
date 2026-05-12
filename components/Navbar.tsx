@@ -45,19 +45,15 @@ export default function Navbar() {
         }}
       >
         <nav className="max-w-6xl mx-auto px-6 flex items-center justify-between" style={{ height: '72px' }}>
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-center gap-3">
             <img
               src="/logo.jpg"
               alt="After 9"
-              style={{ height: '40px', width: 'auto', filter: 'brightness(0) invert(1)' }}
-              onError={(e) => {
-                ;(e.currentTarget as HTMLImageElement).style.display = 'none'
-                ;(e.currentTarget.nextSibling as HTMLElement).style.display = 'block'
-              }}
+              style={{ height: '38px', width: 'auto', filter: 'invert(1) drop-shadow(0 0 4px rgba(0,0,0,0.5))' }}
             />
             <span
-              className="hidden text-gold font-display font-light"
-              style={{ fontSize: '1.25rem', letterSpacing: '0.15em' }}
+              className="text-gold font-display font-light"
+              style={{ fontSize: '1.125rem', letterSpacing: '0.15em' }}
             >
               AFTER 9
             </span>
