@@ -181,20 +181,12 @@ export default function HomePage() {
             <FadeIn delay={100}>
               <Link href="/ktv" className="block group">
                 <div
-                  className="relative overflow-hidden"
+                  className="relative overflow-hidden border border-border hover:border-gold-dark transition-colors duration-300"
                   style={{
                     minHeight: '440px',
                     background: 'linear-gradient(135deg, #0d0d0d, #1a1008)',
-                    border: '1px solid var(--border)',
                     borderRadius: '2px',
-                    transition: 'border-color 0.3s',
                   }}
-                  onMouseEnter={e =>
-                    ((e.currentTarget as HTMLDivElement).style.borderColor = 'var(--gold-dark)')
-                  }
-                  onMouseLeave={e =>
-                    ((e.currentTarget as HTMLDivElement).style.borderColor = 'var(--border)')
-                  }
                 >
                   <div className="relative z-10 p-10 flex flex-col" style={{ minHeight: '440px' }}>
                     <p
@@ -242,20 +234,12 @@ export default function HomePage() {
             <FadeIn delay={200}>
               <Link href="/dining" className="block group">
                 <div
-                  className="relative overflow-hidden"
+                  className="relative overflow-hidden border border-border hover:border-accent-dark transition-colors duration-300"
                   style={{
                     minHeight: '440px',
                     background: 'linear-gradient(135deg, #0d0d0d, #140608)',
-                    border: '1px solid var(--border)',
                     borderRadius: '2px',
-                    transition: 'border-color 0.3s',
                   }}
-                  onMouseEnter={e =>
-                    ((e.currentTarget as HTMLDivElement).style.borderColor = 'var(--accent-dark)')
-                  }
-                  onMouseLeave={e =>
-                    ((e.currentTarget as HTMLDivElement).style.borderColor = 'var(--border)')
-                  }
                 >
                   <div className="relative z-10 p-10 flex flex-col" style={{ minHeight: '440px' }}>
                     <p
