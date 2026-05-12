@@ -1,7 +1,25 @@
 'use client'
 
 import { useState } from 'react'
-import { Instagram, Facebook, MapPin, Clock, Phone, Mail, MessageCircle } from 'lucide-react'
+import { MapPin, Clock, Phone, Mail, MessageCircle } from 'lucide-react'
+
+function InstagramIcon({ size = 18 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+      <circle cx="12" cy="12" r="4"/>
+      <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+    </svg>
+  )
+}
+
+function FacebookIcon({ size = 18 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+    </svg>
+  )
+}
 
 export default function Footer() {
   const [email, setEmail] = useState('')
@@ -77,10 +95,10 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="text-text-dim hover:text-gold transition-colors"
             >
-              <Instagram size={18} />
+              <InstagramIcon size={18} />
             </a>
             <a href="#" className="text-text-dim hover:text-gold transition-colors">
-              <Facebook size={18} />
+              <FacebookIcon size={18} />
             </a>
           </div>
         </div>
@@ -119,7 +137,7 @@ export default function Footer() {
               huangsq0716@gmail.com
             </a>
             <a href="https://www.instagram.com/after9barncl" target="_blank" rel="noopener noreferrer" className="flex gap-3 items-center text-text-muted hover:text-gold text-sm transition-colors">
-              <Instagram size={15} className="text-gold-dark shrink-0" />
+              <InstagramIcon size={15} />
               @after9barncl
             </a>
           </div>

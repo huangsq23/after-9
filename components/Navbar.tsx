@@ -3,7 +3,17 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
-import { Menu, X, Instagram } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
+
+function InstagramIcon({ size = 18 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+      <circle cx="12" cy="12" r="4"/>
+      <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+    </svg>
+  )
+}
 
 const MENU_URL = 'https://www.instagram.com/p/DIRKYZtIPAs/?img_index=1&igsh=MTQ3dm14dTNyYWZtbA%3D%3D'
 
@@ -89,7 +99,7 @@ export default function Navbar() {
               rel="noopener noreferrer"
               className="text-text-muted hover:text-gold transition-colors duration-200"
             >
-              <Instagram size={17} />
+              <InstagramIcon size={17} />
             </a>
             <Link
               href="/ktv"
@@ -158,7 +168,7 @@ export default function Navbar() {
             className="text-text-muted hover:text-gold transition-colors mt-4"
             onClick={() => setMobileOpen(false)}
           >
-            <Instagram size={24} />
+            <InstagramIcon size={24} />
           </a>
         </div>
       )}
