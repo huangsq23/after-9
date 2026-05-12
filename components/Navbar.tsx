@@ -2,75 +2,166 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useState, useEffect } from 'react'
+import { Menu, X, Instagram } from 'lucide-react'
+
+const MENU_URL = 'https://www.instagram.com/p/DIRKYZtIPAs/?img_index=1&igsh=MTQ3dm14dTNyYWZtbA%3D%3D'
+
+const navLinks = [
+  { href: '/ktv', label: 'KTV' },
+  { href: '/dining', label: 'Dining' },
+  { href: MENU_URL, label: 'Menu', external: true },
+]
 
 export default function Navbar() {
   const pathname = usePathname()
+  const [scrolled, setScrolled] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
 
-  const links = [
-    { href: '/ktv', label: 'KTV Booking' },
-    { href: '/dining', label: 'Dining' },
-  ]
-
-  const menuUrl = 'https://www.instagram.com/p/DIRKYZtIPAs/?img_index=1&igsh=MTQ3dm14dTNyYWZtbA%3D%3D'
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 80)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
-    <header style={{
-      position: 'sticky', top: 0, zIndex: 50,
-      background: 'rgba(10,10,10,0.9)',
-      backdropFilter: 'blur(12px)',
-      borderBottom: '1px solid var(--border)',
-    }}>
-      <nav style={{
-        maxWidth: '1100px', margin: '0 auto',
-        padding: '0 1.5rem',
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        height: '64px',
-      }}>
-        <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
-          <img src="/logo.jpg" alt="After 9" style={{ height: '40px', width: 'auto', filter: 'invert(1)' }}
-            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; (e.currentTarget.nextSibling as HTMLElement).style.display = 'inline' }}
-          />
-          <span style={{ fontSize: '1.375rem', letterSpacing: '-0.02em', color: 'var(--gold)', fontWeight: '400', display: 'none' }}>
-            After <span style={{ color: 'var(--pink)' }}>9</span>
-          </span>
-        </Link>
+    <>
+      <header
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+        style={{
+          background: scrolled ? 'rgba(10,10,10,0.95)' : 'transparent',
+          backdropFilter: scrolled ? 'blur(12px)' : 'none',
+          borderBottom: scrolled ? '1px solid var(--border)' : '1px solid transparent',
+        }}
+      >
+        <nav className="max-w-6xl mx-auto px-6 flex items-center justify-between" style={{ height: '72px' }}>
+          <Link href="/" className="flex items-center">
+            <img
+              src="/logo.jpg"
+              alt="After 9"
+              style={{ height: '40px', width: 'auto', filter: 'brightness(0) invert(1)' }}
+              onError={(e) => {
+                ;(e.currentTarget as HTMLImageElement).style.display = 'none'
+                ;(e.currentTarget.nextSibling as HTMLElement).style.display = 'block'
+              }}
+            />
+            <span
+              className="hidden text-gold font-display font-light"
+              style={{ fontSize: '1.25rem', letterSpacing: '0.15em' }}
+            >
+              AFTER 9
+            </span>
+          </Link>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-          {links.map(link => (
+          {/* Desktop links */}
+          <div className="hidden md:flex items-center gap-8">
+            {navLinks.map(link =>
+              link.external ? (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-text-muted hover:text-foreground transition-colors duration-200"
+                  style={{ letterSpacing: '0.08em' }}
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm transition-colors duration-200"
+                  style={{
+                    letterSpacing: '0.08em',
+                    color: pathname.startsWith(link.href) ? 'var(--gold)' : 'var(--text-muted)',
+                    borderBottom: pathname.startsWith(link.href) ? '1px solid var(--gold)' : '1px solid transparent',
+                    paddingBottom: '2px',
+                  }}
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
+            <a
+              href="https://www.instagram.com/after9barncl"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-text-muted hover:text-gold transition-colors duration-200"
+            >
+              <Instagram size={17} />
+            </a>
             <Link
-              key={link.href}
-              href={link.href}
+              href="/ktv"
+              className="text-sm font-medium uppercase hover:opacity-85 transition-opacity"
               style={{
-                padding: '0.5rem 1rem',
+                padding: '0.5rem 1.25rem',
+                background: 'linear-gradient(135deg, var(--gold-dark), var(--gold))',
+                color: '#0a0a0a',
+                letterSpacing: '0.08em',
                 borderRadius: '2px',
-                fontSize: '0.875rem',
-                textDecoration: 'none',
-                letterSpacing: '0.03em',
-                color: pathname.startsWith(link.href) ? 'var(--gold)' : '#888',
-                borderBottom: pathname.startsWith(link.href) ? '1px solid var(--gold)' : '1px solid transparent',
-                transition: 'color 0.2s',
               }}
             >
-              {link.label}
+              Book Now
             </Link>
-          ))}
-          <a href={menuUrl} target="_blank" rel="noopener noreferrer"
-            style={{ padding: '0.5rem 1rem', borderRadius: '2px', fontSize: '0.875rem', textDecoration: 'none', letterSpacing: '0.03em', color: '#888', borderBottom: '1px solid transparent', transition: 'color 0.2s' }}
-            onMouseEnter={e => (e.currentTarget.style.color = 'var(--gold)')}
-            onMouseLeave={e => (e.currentTarget.style.color = '#888')}
+          </div>
+
+          {/* Mobile hamburger */}
+          <button
+            className="md:hidden text-foreground p-2"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
           >
-            Menu
-          </a>
-          <a href="https://www.instagram.com/after9barncl" target="_blank" rel="noopener noreferrer"
-            style={{ padding: '0.5rem 0.75rem', color: '#888', textDecoration: 'none', fontSize: '1.1rem', transition: 'color 0.2s' }}
-            onMouseEnter={e => (e.currentTarget.style.color = 'var(--pink)')}
-            onMouseLeave={e => (e.currentTarget.style.color = '#888')}
-            title="Instagram"
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </nav>
+      </header>
+
+      {/* Mobile overlay */}
+      {mobileOpen && (
+        <div
+          className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-10"
+          style={{ background: 'rgba(10,10,10,0.97)' }}
+        >
+          {navLinks.map(link =>
+            link.external ? (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground hover:text-gold transition-colors duration-200 font-display font-light"
+                style={{ fontSize: '2rem' }}
+                onClick={() => setMobileOpen(false)}
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="font-display font-light hover:text-gold transition-colors duration-200"
+                style={{
+                  fontSize: '2rem',
+                  color: pathname.startsWith(link.href) ? 'var(--gold)' : 'var(--foreground)',
+                }}
+                onClick={() => setMobileOpen(false)}
+              >
+                {link.label}
+              </Link>
+            )
+          )}
+          <a
+            href="https://www.instagram.com/after9barncl"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-text-muted hover:text-gold transition-colors mt-4"
+            onClick={() => setMobileOpen(false)}
           >
-            IG
+            <Instagram size={24} />
           </a>
         </div>
-      </nav>
-    </header>
+      )}
+    </>
   )
 }

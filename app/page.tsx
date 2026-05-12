@@ -1,167 +1,492 @@
-'use client'
-
 import Link from 'next/link'
+import { MapPin, Clock, Phone, Mail, ChevronDown } from 'lucide-react'
+import Marquee from '../components/Marquee'
+import FadeIn from '../components/FadeIn'
+
+const HERO_VIDEO_ID = '1191686397'
+
+const testimonials = [
+  {
+    text: 'Incredible atmosphere — the KTV rooms are top-notch and the food was absolutely delicious. Will definitely be back!',
+    name: 'Sarah M.',
+    source: 'Google Review',
+  },
+  {
+    text: 'Best night out in Newcastle! The private karaoke rooms are amazing, and the cocktails were phenomenal. 10/10.',
+    name: 'James T.',
+    source: 'TripAdvisor',
+  },
+  {
+    text: 'Stunning venue in the heart of Chinatown. The dining experience was memorable and the service was impeccable.',
+    name: 'Emily R.',
+    source: 'Google Review',
+  },
+]
 
 export default function HomePage() {
   return (
-    <div style={{ background: 'var(--background)' }}>
-      {/* Hero Section */}
-      <section className="hero-bg" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '4rem 1.5rem', position: 'relative', overflow: 'hidden' }}>
-        {/* Decorative rings */}
-        <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
-          <div style={{ width: '600px', height: '600px', borderRadius: '50%', border: '1px solid rgba(232,96,28,0.08)', position: 'absolute' }} />
-          <div style={{ width: '800px', height: '800px', borderRadius: '50%', border: '1px solid rgba(232,96,28,0.05)', position: 'absolute' }} />
-          <div style={{ width: '1000px', height: '1000px', borderRadius: '50%', border: '1px solid rgba(232,96,28,0.03)', position: 'absolute' }} />
-        </div>
-
-        <div style={{ maxWidth: '800px', position: 'relative' }}>
-          <p className="animate-fade-in-up" style={{ letterSpacing: '0.3em', fontSize: '0.75rem', color: 'var(--gold)', textTransform: 'uppercase', marginBottom: '1.5rem' }}>
+    <div className="bg-background">
+      {/* Section 1: Full-Screen Video Hero */}
+      <section className="relative overflow-hidden" style={{ height: '100vh' }}>
+        <iframe
+          src={`https://player.vimeo.com/video/${HERO_VIDEO_ID}?autoplay=1&muted=1&loop=1&controls=0&background=1`}
+          className="vimeo-bg"
+          allow="autoplay; fullscreen"
+          title="After 9 atmosphere video"
+        />
+        {/* Dark gradient overlay */}
+        <div
+          className="absolute inset-0 z-10"
+          style={{
+            background:
+              'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.55) 50%, rgba(10,10,10,0.88) 100%)',
+          }}
+        />
+        {/* Text overlay */}
+        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-6">
+          <p
+            className="text-gold uppercase mb-6"
+            style={{ letterSpacing: '0.3em', fontSize: '0.75rem' }}
+          >
             Premium Entertainment & Dining
           </p>
-          <h1 className="animate-fade-in-up delay-100" style={{ fontSize: 'clamp(3rem, 8vw, 6rem)', fontWeight: '300', letterSpacing: '-0.02em', lineHeight: 1.1, marginBottom: '1.5rem' }}>
-            <span className="text-gold-gradient">AFTER 9<br />BAR & KITCHEN</span>
+          <h1
+            className="font-display font-light text-foreground mb-4 leading-tight"
+            style={{ fontSize: 'clamp(3.5rem, 10vw, 7rem)', letterSpacing: '-0.02em' }}
+          >
+            AFTER 9
           </h1>
-          <p className="animate-fade-in-up delay-200" style={{ fontSize: '1.125rem', color: '#888', maxWidth: '500px', margin: '0 auto 3rem', lineHeight: 1.7 }}>
-            Where the night truly begins. Book a private KTV suite or reserve your table for an unforgettable evening.
+          <p
+            className="text-text-muted uppercase mb-5"
+            style={{ letterSpacing: '0.2em', fontSize: '0.875rem' }}
+          >
+            BAR & KITCHEN · NEWCASTLE
           </p>
-
-          <div className="animate-fade-in-up delay-300" style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link href="/ktv" style={{
-              display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-              padding: '0.875rem 2rem', borderRadius: '2px',
-              background: 'linear-gradient(135deg, var(--gold-dark), var(--gold))',
-              color: '#0a0a0a', fontWeight: '600', fontSize: '0.9rem',
-              letterSpacing: '0.05em', textDecoration: 'none', textTransform: 'uppercase',
-              transition: 'opacity 0.2s'
-            }}>
-              Book KTV Room
+          <p className="text-foreground italic mb-12" style={{ fontSize: '1.125rem' }}>
+            Where the night truly begins.
+          </p>
+          <div className="flex gap-4 flex-wrap justify-center">
+            <Link
+              href="/ktv"
+              className="px-8 py-3 text-sm font-semibold uppercase hover:opacity-85 transition-opacity"
+              style={{
+                background: 'linear-gradient(135deg, var(--gold-dark), var(--gold))',
+                color: '#0a0a0a',
+                letterSpacing: '0.08em',
+                borderRadius: '2px',
+              }}
+            >
+              Book KTV
             </Link>
-            <Link href="/dining" style={{
-              display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-              padding: '0.875rem 2rem', borderRadius: '2px',
-              border: '1px solid var(--gold)', color: 'var(--gold)',
-              fontWeight: '600', fontSize: '0.9rem',
-              letterSpacing: '0.05em', textDecoration: 'none', textTransform: 'uppercase',
-              transition: 'background 0.2s'
-            }}>
+            <Link
+              href="/dining"
+              className="px-8 py-3 text-sm font-semibold uppercase transition-colors duration-200 hover:bg-gold hover:text-background"
+              style={{
+                border: '1px solid var(--gold)',
+                color: 'var(--gold)',
+                letterSpacing: '0.08em',
+                borderRadius: '2px',
+              }}
+            >
               Reserve a Table
             </Link>
           </div>
         </div>
-      </section>
-
-      {/* Video Section */}
-      <section style={{ padding: '5rem 1.5rem', maxWidth: '640px', margin: '0 auto', textAlign: 'center' }}>
-        <p style={{ letterSpacing: '0.3em', fontSize: '0.75rem', color: 'var(--gold)', textTransform: 'uppercase', marginBottom: '1rem' }}>
-          Experience After 9
-        </p>
-        <h2 style={{ fontSize: '2rem', fontWeight: '300', marginBottom: '3rem', color: '#ddd' }}>
-          See What Awaits You
-        </h2>
-        <div style={{
-          position: 'relative',
-          border: '1px solid var(--border)',
-          borderRadius: '4px',
-          overflow: 'hidden',
-          background: 'var(--surface)',
-          boxShadow: '0 0 60px rgba(201,168,76,0.06)'
-        }}>
-          <video
-            src="/promo.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            style={{ width: '100%', display: 'block', maxHeight: '360px', objectFit: 'cover' }}
-          />
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2">
+          <span className="text-text-muted text-xs uppercase" style={{ letterSpacing: '0.2em' }}>
+            Scroll
+          </span>
+          <ChevronDown size={20} className="text-gold chevron-bounce" />
         </div>
       </section>
 
-      {/* Services Section */}
-      <section style={{ padding: '5rem 1.5rem', maxWidth: '1100px', margin: '0 auto' }}>
-        <p style={{ textAlign: 'center', letterSpacing: '0.3em', fontSize: '0.75rem', color: 'var(--gold)', textTransform: 'uppercase', marginBottom: '1rem' }}>What We Offer</p>
-        <h2 style={{ textAlign: 'center', fontSize: '2rem', fontWeight: '300', marginBottom: '3.5rem', color: '#ddd' }}>An Unrivalled Night Out</h2>
+      {/* Section 2: Welcome */}
+      <section className="py-24 px-6">
+        <div className="max-w-6xl mx-auto">
+          <FadeIn>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+              <div>
+                <p
+                  className="text-gold text-xs uppercase mb-5"
+                  style={{ letterSpacing: '0.3em' }}
+                >
+                  Welcome to After 9
+                </p>
+                <h2
+                  className="font-display font-light text-foreground mb-6 leading-tight"
+                  style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}
+                >
+                  An Unforgettable<br />Night Out
+                </h2>
+                <p className="text-text-muted leading-relaxed mb-4 text-sm">
+                  Nestled in the heart of Newcastle's vibrant Chinatown, After 9 is where premium karaoke suites meet fine late-night dining. Whether you're celebrating, socialising, or simply seeking something special — every visit is an occasion.
+                </p>
+                <p className="text-text-muted leading-relaxed mb-8 text-sm">
+                  Open every night from 5PM until 2AM, we offer three beautifully appointed private KTV rooms alongside an expertly crafted dining menu — all under one roof on Stowell Street.
+                </p>
+                <Link
+                  href="/ktv"
+                  className="text-gold text-sm uppercase hover:text-gold-light transition-colors"
+                  style={{
+                    letterSpacing: '0.1em',
+                    borderBottom: '1px solid var(--gold-dark)',
+                    paddingBottom: '2px',
+                  }}
+                >
+                  Discover More →
+                </Link>
+              </div>
+              <div
+                className="relative overflow-hidden flex items-center justify-center"
+                style={{
+                  minHeight: '420px',
+                  background: 'linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%)',
+                  border: '1px solid var(--border)',
+                  borderRadius: '2px',
+                }}
+              >
+                <p className="text-text-dim text-xs uppercase" style={{ letterSpacing: '0.2em' }}>
+                  Venue Photo
+                </p>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
-          {/* KTV Card */}
-          <Link href="/ktv" style={{ textDecoration: 'none' }}>
-            <div style={{
-              background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '4px',
-              padding: '2.5rem', cursor: 'pointer', transition: 'border-color 0.3s',
-              position: 'relative', overflow: 'hidden'
-            }}
-              onMouseEnter={e => (e.currentTarget.style.borderColor = 'var(--gold-dark)')}
-              onMouseLeave={e => (e.currentTarget.style.borderColor = 'var(--border)')}
+      {/* Section 3: Marquee */}
+      <Marquee />
+
+      {/* Section 4: Services */}
+      <section className="py-24 px-6">
+        <div className="max-w-6xl mx-auto">
+          <FadeIn>
+            <p
+              className="text-center text-gold text-xs uppercase mb-3"
+              style={{ letterSpacing: '0.3em' }}
             >
-              <div style={{ fontSize: '2.5rem', marginBottom: '1.25rem' }}>🎤</div>
-              <h3 style={{ fontSize: '1.375rem', fontWeight: '400', color: 'var(--gold)', marginBottom: '0.75rem' }}>Private KTV Suites</h3>
-              <p style={{ color: '#777', lineHeight: 1.7, marginBottom: '1.5rem' }}>
-                Three room sizes to suit every group. State-of-the-art sound systems, curated song libraries, and personalised service.
-              </p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                {[
-                  { type: 'Small', cap: '8 guests', price: '£30/hr' },
-                  { type: 'Medium', cap: '14 guests', price: '£40/hr' },
-                  { type: 'Large', cap: '20 guests', price: '£50/hr' },
-                ].map(r => (
-                  <div key={r.type} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.5rem 0.75rem', background: 'var(--surface-2)', borderRadius: '2px' }}>
-                    <span style={{ color: '#ccc', fontSize: '0.875rem' }}>{r.type} · {r.cap}</span>
-                    <span style={{ color: 'var(--gold)', fontSize: '0.875rem', fontWeight: '600' }}>{r.price}</span>
+              What We Offer
+            </p>
+            <h2
+              className="font-display font-light text-center text-foreground mb-16"
+              style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)' }}
+            >
+              Two Signature Experiences
+            </h2>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* KTV Card */}
+            <FadeIn delay={100}>
+              <Link href="/ktv" className="block group">
+                <div
+                  className="relative overflow-hidden"
+                  style={{
+                    minHeight: '440px',
+                    background: 'linear-gradient(135deg, #0d0d0d, #1a1008)',
+                    border: '1px solid var(--border)',
+                    borderRadius: '2px',
+                    transition: 'border-color 0.3s',
+                  }}
+                  onMouseEnter={e =>
+                    ((e.currentTarget as HTMLDivElement).style.borderColor = 'var(--gold-dark)')
+                  }
+                  onMouseLeave={e =>
+                    ((e.currentTarget as HTMLDivElement).style.borderColor = 'var(--border)')
+                  }
+                >
+                  <div className="relative z-10 p-10 flex flex-col" style={{ minHeight: '440px' }}>
+                    <p
+                      className="text-gold text-xs uppercase mb-4"
+                      style={{ letterSpacing: '0.25em' }}
+                    >
+                      Private Karaoke
+                    </p>
+                    <h3
+                      className="font-display font-light text-foreground mb-4"
+                      style={{ fontSize: '1.875rem' }}
+                    >
+                      Private KTV Suites
+                    </h3>
+                    <p className="text-text-muted text-sm leading-relaxed mb-8">
+                      Three beautifully appointed rooms for every group size. State-of-the-art sound systems, expansive song libraries, and attentive service throughout the night.
+                    </p>
+                    <div className="flex flex-col gap-0 mb-auto">
+                      {[
+                        { type: 'Small Room', cap: 'Up to 8 guests', price: '£30 / hr' },
+                        { type: 'Medium Room', cap: 'Up to 14 guests', price: '£40 / hr' },
+                        { type: 'Large Room', cap: 'Up to 20 guests', price: '£50 / hr' },
+                      ].map(r => (
+                        <div
+                          key={r.type}
+                          className="flex justify-between items-center py-3 border-b border-border"
+                        >
+                          <div>
+                            <span className="text-foreground text-sm">{r.type}</span>
+                            <span className="text-text-dim text-xs ml-2">{r.cap}</span>
+                          </div>
+                          <span className="text-gold text-sm font-medium">{r.price}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <p className="text-gold text-sm mt-8 group-hover:text-gold-light transition-colors">
+                      Book Now →
+                    </p>
                   </div>
-                ))}
-              </div>
-              <div style={{ marginTop: '1.5rem', color: 'var(--gold)', fontSize: '0.875rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                Book now →
-              </div>
-            </div>
-          </Link>
+                </div>
+              </Link>
+            </FadeIn>
 
-          {/* Dining Card */}
-          <Link href="/dining" style={{ textDecoration: 'none' }}>
-            <div style={{
-              background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '4px',
-              padding: '2.5rem', cursor: 'pointer', transition: 'border-color 0.3s',
-            }}
-              onMouseEnter={e => (e.currentTarget.style.borderColor = 'var(--pink)')}
-              onMouseLeave={e => (e.currentTarget.style.borderColor = 'var(--border)')}
+            {/* Dining Card */}
+            <FadeIn delay={200}>
+              <Link href="/dining" className="block group">
+                <div
+                  className="relative overflow-hidden"
+                  style={{
+                    minHeight: '440px',
+                    background: 'linear-gradient(135deg, #0d0d0d, #140608)',
+                    border: '1px solid var(--border)',
+                    borderRadius: '2px',
+                    transition: 'border-color 0.3s',
+                  }}
+                  onMouseEnter={e =>
+                    ((e.currentTarget as HTMLDivElement).style.borderColor = 'var(--accent-dark)')
+                  }
+                  onMouseLeave={e =>
+                    ((e.currentTarget as HTMLDivElement).style.borderColor = 'var(--border)')
+                  }
+                >
+                  <div className="relative z-10 p-10 flex flex-col" style={{ minHeight: '440px' }}>
+                    <p
+                      className="text-xs uppercase mb-4"
+                      style={{ color: 'var(--accent)', letterSpacing: '0.25em' }}
+                    >
+                      Late Night Dining
+                    </p>
+                    <h3
+                      className="font-display font-light text-foreground mb-4"
+                      style={{ fontSize: '1.875rem' }}
+                    >
+                      Fine Dining
+                    </h3>
+                    <p className="text-text-muted text-sm leading-relaxed mb-8">
+                      An expertly crafted menu for night-time indulgence. From elegant sharing plates to intimate dinners — every dish is designed to complement the evening.
+                    </p>
+                    <ul className="flex flex-col gap-3 mb-auto">
+                      {[
+                        'No deposit required',
+                        'Dietary requirements catered for',
+                        'Available every night 17:00 – 02:00',
+                        'Large group seating available',
+                      ].map(f => (
+                        <li key={f} className="flex items-start gap-3 text-text-muted text-sm">
+                          <span style={{ color: 'var(--accent)' }} className="mt-0.5 shrink-0">
+                            ✓
+                          </span>
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
+                    <p
+                      className="text-sm mt-8 transition-opacity group-hover:opacity-75"
+                      style={{ color: 'var(--accent)' }}
+                    >
+                      Reserve Now →
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 5: Promotional Banner */}
+      <FadeIn>
+        <section
+          className="py-20 px-6"
+          style={{
+            background: 'var(--surface)',
+            borderTop: '1px solid var(--border)',
+            borderBottom: '1px solid var(--border)',
+          }}
+        >
+          <div className="max-w-3xl mx-auto text-center">
+            <p
+              className="text-gold text-xs uppercase mb-4"
+              style={{ letterSpacing: '0.3em' }}
             >
-              <div style={{ fontSize: '2.5rem', marginBottom: '1.25rem' }}>🍽️</div>
-              <h3 style={{ fontSize: '1.375rem', fontWeight: '400', color: 'var(--pink)', marginBottom: '0.75rem' }}>Dining Reservations</h3>
-              <p style={{ color: '#777', lineHeight: 1.7, marginBottom: '1.5rem' }}>
-                Indulge in our curated menu crafted for night-time dining. From sharing plates to intimate dinners — every seat is an experience.
-              </p>
-              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                {['No deposit required', 'Dietary requirements catered for', 'Available 17:00 – 02:00'].map(f => (
-                  <li key={f} style={{ color: '#777', fontSize: '0.875rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <span style={{ color: 'var(--pink)' }}>✓</span> {f}
-                  </li>
-                ))}
-              </ul>
-              <div style={{ marginTop: '1.5rem', color: 'var(--pink)', fontSize: '0.875rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                Reserve now →
-              </div>
-            </div>
-          </Link>
+              Special Offer
+            </p>
+            <h2
+              className="font-display font-light text-foreground mb-4"
+              style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)' }}
+            >
+              Happy Hour · 5PM – 7PM
+            </h2>
+            <p className="text-text-muted mb-8 text-sm leading-relaxed">
+              Kick off your evening in style. Selected cocktails from{' '}
+              <span className="text-gold font-medium">£6</span> · Sharing plates from{' '}
+              <span className="text-gold font-medium">£8</span>
+            </p>
+            <Link
+              href="/dining"
+              className="inline-block text-sm font-medium uppercase hover:opacity-90 transition-opacity"
+              style={{
+                padding: '0.75rem 2rem',
+                background: 'linear-gradient(135deg, var(--gold-dark), var(--gold))',
+                color: '#0a0a0a',
+                letterSpacing: '0.08em',
+                borderRadius: '2px',
+              }}
+            >
+              Reserve Your Table
+            </Link>
+          </div>
+        </section>
+      </FadeIn>
+
+      {/* Section 6: Testimonials */}
+      <section className="py-24 px-6">
+        <div className="max-w-6xl mx-auto">
+          <FadeIn>
+            <p
+              className="text-center text-gold text-xs uppercase mb-3"
+              style={{ letterSpacing: '0.3em' }}
+            >
+              Reviews
+            </p>
+            <h2
+              className="font-display font-light text-center text-foreground mb-16"
+              style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)' }}
+            >
+              What Our Guests Say
+            </h2>
+          </FadeIn>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {testimonials.map((t, i) => (
+              <FadeIn key={i} delay={i * 100}>
+                <div
+                  className="p-8"
+                  style={{
+                    background: 'var(--surface)',
+                    border: '1px solid var(--border)',
+                    borderRadius: '2px',
+                  }}
+                >
+                  <p
+                    className="font-display text-4xl font-light text-gold leading-none mb-6"
+                    style={{ opacity: 0.4 }}
+                  >
+                    "
+                  </p>
+                  <p className="text-text-muted text-sm leading-relaxed italic mb-6">{t.text}</p>
+                  <div className="border-t border-border pt-4">
+                    <p className="text-foreground text-sm font-medium">{t.name}</p>
+                    <p className="text-text-dim text-xs mt-1">{t.source}</p>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Info Banner */}
-      <section style={{ background: 'var(--surface)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', padding: '3rem 1.5rem' }}>
-        <div style={{ maxWidth: '900px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem', textAlign: 'center' }}>
-          {[
-            { icon: '🕔', label: 'Opening Hours', value: '17:00 – 02:00' },
-            { icon: '📅', label: 'Bookings', value: '1-hour slots' },
-            { icon: '💳', label: 'KTV Deposit', value: 'Refundable 48hrs+' },
-            { icon: '📧', label: 'Confirmation', value: 'Instant by email' },
-          ].map(item => (
-            <div key={item.label}>
-              <div style={{ fontSize: '1.75rem', marginBottom: '0.5rem' }}>{item.icon}</div>
-              <div style={{ fontSize: '0.75rem', color: '#555', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.25rem' }}>{item.label}</div>
-              <div style={{ color: '#ccc', fontWeight: '500' }}>{item.value}</div>
+      {/* Section 7: Location & Info */}
+      <FadeIn>
+        <section
+          className="py-20 px-6"
+          style={{ background: 'var(--surface)', borderTop: '1px solid var(--border)' }}
+        >
+          <div className="max-w-5xl mx-auto">
+            <p
+              className="text-center text-gold text-xs uppercase mb-14"
+              style={{ letterSpacing: '0.3em' }}
+            >
+              Find Us
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+              <div className="flex flex-col items-center gap-3">
+                <Clock size={22} className="text-gold" />
+                <p className="text-xs uppercase text-text-dim" style={{ letterSpacing: '0.1em' }}>
+                  Opening Hours
+                </p>
+                <p className="text-foreground text-sm">
+                  17:00 – 02:00<br />
+                  <span className="text-text-muted">Every Day</span>
+                </p>
+              </div>
+              <div className="flex flex-col items-center gap-3">
+                <MapPin size={22} className="text-gold" />
+                <p className="text-xs uppercase text-text-dim" style={{ letterSpacing: '0.1em' }}>
+                  Address
+                </p>
+                <p className="text-foreground text-sm">
+                  45-51 Stowell Street<br />
+                  <span className="text-text-muted">Newcastle NE1 4YB</span>
+                </p>
+              </div>
+              <div className="flex flex-col items-center gap-3">
+                <Phone size={22} className="text-gold" />
+                <p className="text-xs uppercase text-text-dim" style={{ letterSpacing: '0.1em' }}>
+                  Contact
+                </p>
+                <p className="text-foreground text-sm">
+                  <a href="tel:07552791612" className="hover:text-gold transition-colors">
+                    07552 791612
+                  </a>
+                </p>
+              </div>
+              <div className="flex flex-col items-center gap-3">
+                <Mail size={22} className="text-gold" />
+                <p className="text-xs uppercase text-text-dim" style={{ letterSpacing: '0.1em' }}>
+                  Bookings
+                </p>
+                <p className="text-foreground text-sm">
+                  1-hour slots<br />
+                  <span className="text-text-muted">Instant confirmation</span>
+                </p>
+              </div>
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
+        </section>
+      </FadeIn>
+
+      {/* Section 8: Instagram */}
+      <FadeIn>
+        <section className="py-20 px-6">
+          <div className="max-w-6xl mx-auto text-center">
+            <p
+              className="text-gold text-xs uppercase mb-3"
+              style={{ letterSpacing: '0.3em' }}
+            >
+              Social
+            </p>
+            <h2
+              className="font-display font-light text-foreground mb-3"
+              style={{ fontSize: 'clamp(1.5rem, 2.5vw, 2rem)' }}
+            >
+              Follow Us
+            </h2>
+            <p className="text-text-muted text-sm mb-10">@after9barncl</p>
+            <a
+              href="https://www.instagram.com/after9barncl"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 text-sm uppercase text-foreground hover:text-gold hover:border-gold transition-colors duration-300"
+              style={{
+                padding: '0.75rem 2rem',
+                border: '1px solid var(--border)',
+                letterSpacing: '0.08em',
+                borderRadius: '2px',
+              }}
+            >
+              View on Instagram →
+            </a>
+          </div>
+        </section>
+      </FadeIn>
     </div>
   )
 }

@@ -1,11 +1,24 @@
 import type { Metadata } from 'next'
+import { Playfair_Display, DM_Sans } from 'next/font/google'
 import './globals.css'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-playfair',
+  weight: ['300', '400'],
+})
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  variable: '--font-dm-sans',
+  weight: ['400', '500'],
+})
+
 export const metadata: Metadata = {
-  title: 'After 9 — KTV & Dining',
-  description: 'Book your perfect night out at After 9. Premium KTV rooms and fine dining.',
+  title: 'After 9 — Bar & Kitchen Newcastle',
+  description: 'Premium KTV suites and fine dining in Newcastle Chinatown. Open daily 17:00 – 02:00.',
 }
 
 export default function RootLayout({
@@ -14,10 +27,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body style={{ background: 'var(--background)', color: 'var(--foreground)', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <html lang="en" className={`${playfair.variable} ${dmSans.variable}`}>
+      <body className="bg-background text-foreground min-h-screen flex flex-col" style={{ fontFamily: "var(--font-dm-sans, 'DM Sans'), sans-serif" }}>
         <Navbar />
-        <main style={{ flex: 1 }}>{children}</main>
+        <main className="flex-1">{children}</main>
         <Footer />
       </body>
     </html>
