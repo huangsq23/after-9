@@ -52,19 +52,18 @@ export async function sendKaraokeNotification({
 }
 
 export async function sendDiningNotification({
-  reference, name, phone, date, time, guests, notes,
+  reference, name, phone, email, date, time, guests, notes,
 }: {
   reference: string
   name: string
   phone: string
+  email: string
   date: string
   time: string
   guests: number
   notes?: string
 }) {
-  const html = emailWrapper(`
-    <h2 style="color:#C23B5C;font-size:22px;margin:0 0 8px;">New Table Reservation</h2>
-    <p style="color:#888;margin:0 0 24px;">A new dining reservation has been submitted.</p>
+  const detailsTable = `
     <table style="width:100%;border-collapse:collapse;font-size:14px;color:#ccc;">
       <tr><td style="padding:8px 0;border-bottom:1px solid #2a2a2a;color:#777;width:140px;">Reference</td><td style="padding:8px 0;border-bottom:1px solid #2a2a2a;font-weight:600;color:#ededed;">${reference}</td></tr>
       <tr><td style="padding:8px 0;border-bottom:1px solid #2a2a2a;color:#777;">Name</td><td style="padding:8px 0;border-bottom:1px solid #2a2a2a;">${name}</td></tr>
@@ -74,14 +73,36 @@ export async function sendDiningNotification({
       <tr><td style="padding:8px 0;${notes ? 'border-bottom:1px solid #2a2a2a;' : ''}color:#777;">Guests</td><td style="padding:8px 0;${notes ? 'border-bottom:1px solid #2a2a2a;' : ''}">${guests} ${guests > 1 ? 'people' : 'person'}</td></tr>
       ${notes ? `<tr><td style="padding:8px 0;color:#777;">Notes</td><td style="padding:8px 0;">${notes}</td></tr>` : ''}
     </table>
-  `)
+  `
 
-  await getResend().emails.send({
-    from: FROM,
-    to: getNotifyEmail(),
-    subject: `[Table Reservation] ${reference} — ${name}`,
-    html,
-  })
+  const resend = getResend()
+  await Promise.all([
+    // Venue notification
+    resend.emails.send({
+      from: FROM,
+      to: getNotifyEmail(),
+      subject: `[Table Reservation] ${reference} — ${name}`,
+      html: emailWrapper(`
+        <h2 style="color:#C23B5C;font-size:22px;margin:0 0 8px;">New Table Reservation</h2>
+        <p style="color:#888;margin:0 0 24px;">A new dining reservation has been submitted.</p>
+        ${detailsTable}
+        <p style="color:#777;font-size:14px;margin-top:16px;"><strong>Email:</strong> ${email}</p>
+      `),
+    }),
+    // Customer confirmation
+    resend.emails.send({
+      from: FROM,
+      to: email,
+      subject: `Reservation Received — After 9 Bar & Kitchen`,
+      html: emailWrapper(`
+        <h2 style="color:#C23B5C;font-size:22px;margin:0 0 8px;">Reservation Received</h2>
+        <p style="color:#888;margin:0 0 24px;">Hi ${name}, we have received your table reservation request. We will be in touch shortly to confirm.</p>
+        ${detailsTable}
+        <p style="color:#666;font-size:13px;margin-top:24px;">If you have any questions, text or WhatsApp us on <a href="https://wa.me/447552791612" style="color:#C23B5C;">07552 791612</a>.</p>
+        <p style="color:#555;font-size:12px;margin-top:32px;">After 9 · 45-51 Stowell Street, Newcastle NE1 4YB</p>
+      `),
+    }),
+  ])
 }
 
 // ── Legacy functions kept for existing /api/bookings/ktv route ──

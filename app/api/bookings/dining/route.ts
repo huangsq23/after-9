@@ -29,6 +29,7 @@ export async function POST(req: NextRequest) {
       reference,
       name: data.name,
       phone: data.phone,
+      email: data.email,
       date: data.date,
       time: data.time,
       guests: data.guests,

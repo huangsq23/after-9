@@ -216,7 +216,7 @@ export default function DiningPage() {
             >
               3 · Contact Details
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
               <div>
                 <label
                   className="block text-xs uppercase text-text-muted mb-2"
@@ -240,12 +240,6 @@ export default function DiningPage() {
                   style={{ letterSpacing: '0.08em' }}
                 >
                   Phone Number
-                  <span
-                    className="text-text-dim normal-case ml-1"
-                    style={{ textTransform: 'none' }}
-                  >
-                    (for confirmation)
-                  </span>
                 </label>
                 <input
                   placeholder="+44 7700 900000"
@@ -255,6 +249,24 @@ export default function DiningPage() {
                 />
                 {errors.phone && (
                   <p className="text-accent text-xs mt-1">{errors.phone.message}</p>
+                )}
+              </div>
+              <div>
+                <label
+                  className="block text-xs uppercase text-text-muted mb-2"
+                  style={{ letterSpacing: '0.08em' }}
+                >
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  placeholder="jane@example.com"
+                  {...register('email')}
+                  className={inputClass}
+                  style={{ borderRadius: '2px' }}
+                />
+                {errors.email && (
+                  <p className="text-accent text-xs mt-1">{errors.email.message}</p>
                 )}
               </div>
             </div>
@@ -304,7 +316,7 @@ export default function DiningPage() {
             </span>
             <span className="text-text-muted">
               {' '}
-              — We will contact you to confirm your reservation.
+              — A confirmation email will be sent to you once we confirm your reservation.
             </span>
           </div>
 

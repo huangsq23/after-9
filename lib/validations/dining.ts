@@ -6,6 +6,7 @@ export const diningSchema = z.object({
   guests: z.number().min(1, 'At least 1 guest required').max(50, 'Maximum 50 guests'),
   name: z.string().min(2, 'Full name is required'),
   phone: z.string().min(7, 'Valid phone number required'),
+  email: z.string().email('Valid email address required'),
   dietary: z.string().optional(),
   hp: z.string().optional(),
 })
