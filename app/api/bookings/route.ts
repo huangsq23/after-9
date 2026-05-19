@@ -73,7 +73,9 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({ error: 'Invalid booking type' }, { status: 400 })
-  } catch {
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err)
+    console.error('[/api/bookings] error:', message)
     return NextResponse.json(
       { error: 'Something went wrong. Please try again or contact us directly on 07552 791612.' },
       { status: 500 }
