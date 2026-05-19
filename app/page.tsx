@@ -67,7 +67,7 @@ export default function HomePage() {
           </p>
           <div className="flex gap-4 flex-wrap justify-center">
             <Link
-              href="/ktv"
+              href="/karaoke"
               className="px-8 py-3 text-sm font-semibold uppercase hover:opacity-85 transition-opacity"
               style={{
                 background: 'linear-gradient(135deg, var(--gold-dark), var(--gold))',
@@ -76,7 +76,7 @@ export default function HomePage() {
                 borderRadius: '2px',
               }}
             >
-              Book KTV
+              Book Karaoke
             </Link>
             <Link
               href="/dining"
@@ -123,10 +123,10 @@ export default function HomePage() {
                   Nestled in the heart of Newcastle's vibrant Chinatown, After 9 is where premium karaoke suites meet fine late-night dining. Whether you're celebrating, socialising, or simply seeking something special — every visit is an occasion.
                 </p>
                 <p className="text-text-muted leading-relaxed mb-8 text-sm">
-                  Open every night from 5PM until 2AM, we offer three beautifully appointed private KTV rooms alongside an expertly crafted dining menu — all under one roof on Stowell Street.
+                  Open every night from 5PM until 2AM, we offer three beautifully appointed private karaoke rooms alongside an expertly crafted dining menu — all under one roof on Stowell Street.
                 </p>
                 <Link
-                  href="/ktv"
+                  href="/karaoke"
                   className="text-gold text-sm uppercase hover:text-gold-light transition-colors"
                   style={{
                     letterSpacing: '0.1em',
@@ -179,7 +179,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* KTV Card */}
             <FadeIn delay={100}>
-              <Link href="/ktv" className="block group">
+              <Link href="/karaoke" className="block group">
                 <div
                   className="relative overflow-hidden border border-border hover:border-gold-dark transition-colors duration-300"
                   style={{
@@ -199,7 +199,7 @@ export default function HomePage() {
                       className="font-display font-light text-foreground mb-4"
                       style={{ fontSize: '1.875rem' }}
                     >
-                      Private KTV Suites
+                      Private Karaoke Suites
                     </h3>
                     <p className="text-text-muted text-sm leading-relaxed mb-8">
                       Three beautifully appointed rooms for every group size. State-of-the-art sound systems, expansive song libraries, and attentive service throughout the night.

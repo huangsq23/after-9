@@ -86,7 +86,7 @@ export default function Footer() {
             }}
           />
           <p className="text-text-dim text-sm leading-relaxed">
-            Premium KTV & Dining<br />Newcastle Chinatown
+            Premium Karaoke & Dining<br />Newcastle Chinatown
           </p>
           <div className="flex gap-4 mt-5">
             <a

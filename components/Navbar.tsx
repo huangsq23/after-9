@@ -18,8 +18,8 @@ function InstagramIcon({ size = 18 }: { size?: number }) {
 const MENU_URL = 'https://www.instagram.com/p/DIRKYZtIPAs/?img_index=1&igsh=MTQ3dm14dTNyYWZtbA%3D%3D'
 
 const navLinks = [
-  { href: '/ktv', label: 'KTV' },
-  { href: '/dining', label: 'Dining' },
+  { href: '/dining', label: 'Table Reservation' },
+  { href: '/karaoke', label: 'Karaoke' },
   { href: MENU_URL, label: 'Menu', external: true },
 ]
 
@@ -98,7 +98,7 @@ export default function Navbar() {
               <InstagramIcon size={17} />
             </a>
             <Link
-              href="/ktv"
+              href="/karaoke"
               className="text-sm font-medium uppercase hover:opacity-85 transition-opacity"
               style={{
                 padding: '0.5rem 1.25rem',

@@ -35,10 +35,10 @@ export default function DiningPage() {
     setSubmitting(true)
     setServerError('')
     try {
-      const res = await fetch('/api/bookings/dining', {
+      const res = await fetch('/api/bookings', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, type: 'dining' }),
       })
       const json = await res.json()
       if (!res.ok) throw new Error(json.error || 'Reservation failed')
@@ -84,10 +84,21 @@ export default function DiningPage() {
       {/* Form */}
       <div className="max-w-3xl mx-auto px-6 py-12">
         <p className="text-text-muted text-sm mb-10" style={{ lineHeight: 1.6 }}>
-          Opening hours: 17:00 – 02:00 · No deposit required · Confirmation sent by email
+          Opening hours: 17:00 – 02:00 · No deposit required · We will confirm your reservation
+          shortly
         </p>
 
         <form onSubmit={handleSubmit(onSubmit)}>
+          {/* Honeypot – hidden from real users, bots fill it in */}
+          <input
+            type="text"
+            {...register('hp')}
+            style={{ display: 'none' }}
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+          />
+
           {/* Date & Time */}
           <section
             className="mb-6 p-7"
@@ -205,7 +216,7 @@ export default function DiningPage() {
             >
               3 · Contact Details
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
                 <label
                   className="block text-xs uppercase text-text-muted mb-2"
@@ -229,6 +240,12 @@ export default function DiningPage() {
                   style={{ letterSpacing: '0.08em' }}
                 >
                   Phone Number
+                  <span
+                    className="text-text-dim normal-case ml-1"
+                    style={{ textTransform: 'none' }}
+                  >
+                    (for confirmation)
+                  </span>
                 </label>
                 <input
                   placeholder="+44 7700 900000"
@@ -240,28 +257,10 @@ export default function DiningPage() {
                   <p className="text-accent text-xs mt-1">{errors.phone.message}</p>
                 )}
               </div>
-              <div>
-                <label
-                  className="block text-xs uppercase text-text-muted mb-2"
-                  style={{ letterSpacing: '0.08em' }}
-                >
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  placeholder="jane@example.com"
-                  {...register('email')}
-                  className={inputClass}
-                  style={{ borderRadius: '2px' }}
-                />
-                {errors.email && (
-                  <p className="text-accent text-xs mt-1">{errors.email.message}</p>
-                )}
-              </div>
             </div>
           </section>
 
-          {/* Dietary */}
+          {/* Other Requests */}
           <section
             className="mb-6 p-7"
             style={{
@@ -274,7 +273,7 @@ export default function DiningPage() {
               className="text-sm font-medium uppercase mb-5"
               style={{ color: 'var(--accent)', letterSpacing: '0.12em' }}
             >
-              4 · Dietary Requirements{' '}
+              4 · Other Requests / Dietary Requirements{' '}
               <span
                 className="text-text-dim normal-case font-normal"
                 style={{ textTransform: 'none' }}
@@ -282,21 +281,13 @@ export default function DiningPage() {
                 (optional)
               </span>
             </h2>
-            <div>
-              <label
-                className="block text-xs uppercase text-text-muted mb-2"
-                style={{ letterSpacing: '0.08em' }}
-              >
-                Notes
-              </label>
-              <textarea
-                {...register('dietary')}
-                placeholder="E.g. vegetarian, nut allergy, gluten-free..."
-                rows={3}
-                className={inputClass}
-                style={{ borderRadius: '2px', resize: 'vertical' }}
-              />
-            </div>
+            <textarea
+              {...register('dietary')}
+              placeholder="E.g. vegetarian, nut allergy, gluten-free, birthday celebration..."
+              rows={3}
+              className={inputClass}
+              style={{ borderRadius: '2px', resize: 'vertical' }}
+            />
           </section>
 
           {/* No-deposit notice */}
@@ -313,7 +304,7 @@ export default function DiningPage() {
             </span>
             <span className="text-text-muted">
               {' '}
-              — A confirmation email will be sent immediately after reservation.
+              — We will contact you to confirm your reservation.
             </span>
           </div>
 
@@ -346,8 +337,21 @@ export default function DiningPage() {
               cursor: submitting ? 'not-allowed' : 'pointer',
             }}
           >
-            {submitting ? 'Processing...' : 'Confirm Reservation'}
+            {submitting ? 'Sending...' : 'Send Reservation Request'}
           </button>
+
+          <p className="mt-6 text-center text-text-dim text-sm" style={{ lineHeight: 1.7 }}>
+            For any other questions, text or WhatsApp us on{' '}
+            <a
+              href="https://wa.me/447552791612"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-text-muted hover:text-foreground transition-colors"
+              style={{ textDecoration: 'underline', textUnderlineOffset: '3px' }}
+            >
+              07552 791612
+            </a>
+          </p>
         </form>
       </div>
     </div>

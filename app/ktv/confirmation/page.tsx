@@ -53,12 +53,12 @@ function ConfirmationContent() {
       </div>
 
       <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-        <Link href="/ktv" style={{
+        <Link href="/karaoke" style={{
           padding: '0.75rem 1.5rem', border: '1px solid var(--gold)',
           color: 'var(--gold)', textDecoration: 'none', borderRadius: '2px',
           fontSize: '0.875rem', letterSpacing: '0.05em',
         }}>
-          New KTV Booking
+          New Karaoke Booking
         </Link>
         <Link href="/" style={{
           padding: '0.75rem 1.5rem',

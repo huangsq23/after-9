@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { diningSchema } from '../../../../lib/validations/dining'
-import { sendDiningEmails } from '../../../../lib/email'
+import { sendDiningNotification } from '../../../../lib/email'
 
 function generateRef() {
   const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
@@ -12,8 +12,9 @@ function generateRef() {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
-    const parsed = diningSchema.safeParse(body)
+    if (body.hp) return NextResponse.json({ success: true })
 
+    const parsed = diningSchema.safeParse(body)
     if (!parsed.success) {
       return NextResponse.json(
         { error: 'Invalid reservation data', details: parsed.error.flatten() },
@@ -24,14 +25,14 @@ export async function POST(req: NextRequest) {
     const data = parsed.data
     const reference = generateRef()
 
-    await sendDiningEmails({
-      customerEmail: data.email,
-      customerName: data.name,
+    await sendDiningNotification({
       reference,
+      name: data.name,
+      phone: data.phone,
       date: data.date,
       time: data.time,
       guests: data.guests,
-      dietaryNotes: data.dietary,
+      notes: data.dietary,
     })
 
     return NextResponse.json({
