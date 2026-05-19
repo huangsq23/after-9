@@ -77,7 +77,7 @@ export async function POST(req: NextRequest) {
     const message = err instanceof Error ? err.message : String(err)
     console.error('[/api/bookings] error:', message)
     return NextResponse.json(
-      { error: 'Something went wrong. Please try again or contact us directly on 07552 791612.' },
+      { error: message },
       { status: 500 }
     )
   }
