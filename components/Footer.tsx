@@ -113,7 +113,7 @@ export default function Footer() {
           <p className="text-text-dim text-xs" style={{ letterSpacing: '0.05em' }}>
             © {new Date().getFullYear()} After 9. All rights reserved.
           </p>
-          <a href="#" className="text-text-dim hover:text-text-muted text-xs transition-colors">
+          <a href="/privacy" className="text-text-dim hover:text-text-muted text-xs transition-colors">
             Privacy Policy
           </a>
         </div>
