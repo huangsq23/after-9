@@ -21,8 +21,14 @@ export default function VenueCarousel() {
 
   return (
     <div
-      className="relative overflow-hidden"
-      style={{ minHeight: '420px', borderRadius: '2px', border: '1px solid var(--border)' }}
+      style={{
+        position: 'relative',
+        height: '420px',
+        borderRadius: '2px',
+        border: '1px solid var(--border)',
+        overflow: 'hidden',
+        background: '#111',
+      }}
     >
       {slides.map((slide, i) => (
         <div
@@ -37,13 +43,14 @@ export default function VenueCarousel() {
           <Image
             src={slide.src}
             alt={slide.alt}
-            fill
-            style={{ objectFit: 'cover' }}
+            width={900}
+            height={420}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
             sizes="(max-width: 768px) 100vw, 50vw"
-            priority={i === 0}
           />
         </div>
       ))}
+
       <div
         style={{
           position: 'absolute',
