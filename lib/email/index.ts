@@ -6,7 +6,7 @@ function getResend() {
   return new Resend(key)
 }
 
-const FROM = 'After 9 <onboarding@resend.dev>'
+const FROM = 'After 9 <bookings@after9bar-newcastle.co.uk>'
 
 function getNotifyEmail() {
   return process.env.BOOKING_NOTIFY_EMAIL ?? 'huangsq0716@gmail.com'
