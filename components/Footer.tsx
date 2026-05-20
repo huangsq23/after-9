@@ -32,7 +32,7 @@ export default function Footer() {
           <Image
             src={logoHorizontal}
             alt="After 9 Bar & Kitchen"
-            style={{ height: '64px', width: 'auto', marginBottom: '1rem' }}
+            style={{ height: '80px', width: 'auto', marginBottom: '1rem' }}
           />
           <p className="text-text-dim text-sm leading-relaxed">
             Premium Karaoke & Dining<br />Newcastle Chinatown

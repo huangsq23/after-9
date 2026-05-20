@@ -46,12 +46,12 @@ export default function Navbar() {
           borderBottom: scrolled ? '1px solid var(--border)' : '1px solid transparent',
         }}
       >
-        <nav className="max-w-6xl mx-auto px-6 flex items-center justify-between" style={{ height: '72px' }}>
+        <nav className="max-w-6xl mx-auto px-6 flex items-center justify-between" style={{ height: '88px' }}>
           <Link href="/" className="flex items-center">
             <Image
               src={logoHorizontal}
               alt="After 9 Bar & Kitchen"
-              style={{ height: '64px', width: 'auto' }}
+              style={{ height: '76px', width: 'auto' }}
             />
           </Link>
 
