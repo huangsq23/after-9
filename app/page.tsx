@@ -6,24 +6,6 @@ import FadeIn from '../components/FadeIn'
 import VenueCarousel from '../components/VenueCarousel'
 import heroLogo from '../public/hero-logo.png'
 
-const testimonials = [
-  {
-    text: 'Incredible atmosphere — the karaoke rooms are top-notch and the food was absolutely delicious. Will definitely be back!',
-    name: 'Sarah M.',
-    source: 'Google Review',
-  },
-  {
-    text: 'Best night out in Newcastle! The private karaoke rooms are amazing, and the cocktails were phenomenal. 10/10.',
-    name: 'James T.',
-    source: 'TripAdvisor',
-  },
-  {
-    text: 'Stunning venue in the heart of Chinatown. The dining experience was memorable and the service was impeccable.',
-    name: 'Emily R.',
-    source: 'Google Review',
-  },
-]
-
 export default function HomePage() {
   return (
     <div className="bg-background">
@@ -259,52 +241,6 @@ export default function HomePage() {
                 </div>
               </Link>
             </FadeIn>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 6: Testimonials */}
-      <section className="py-24 px-6">
-        <div className="max-w-6xl mx-auto">
-          <FadeIn>
-            <p
-              className="text-center text-gold text-xs uppercase mb-3"
-              style={{ letterSpacing: '0.3em' }}
-            >
-              Reviews
-            </p>
-            <h2
-              className="font-display font-light text-center text-foreground mb-16"
-              style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)' }}
-            >
-              What Our Guests Say
-            </h2>
-          </FadeIn>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {testimonials.map((t, i) => (
-              <FadeIn key={i} delay={i * 100}>
-                <div
-                  className="p-8"
-                  style={{
-                    background: 'var(--surface)',
-                    border: '1px solid var(--border)',
-                    borderRadius: '2px',
-                  }}
-                >
-                  <p
-                    className="font-display text-4xl font-light text-gold leading-none mb-6"
-                    style={{ opacity: 0.4 }}
-                  >
-                    "
-                  </p>
-                  <p className="text-text-muted text-sm leading-relaxed italic mb-6">{t.text}</p>
-                  <div className="border-t border-border pt-4">
-                    <p className="text-foreground text-sm font-medium">{t.name}</p>
-                    <p className="text-text-dim text-xs mt-1">{t.source}</p>
-                  </div>
-                </div>
-              </FadeIn>
-            ))}
           </div>
         </div>
       </section>

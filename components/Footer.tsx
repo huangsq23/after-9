@@ -81,9 +81,9 @@ export default function Footer() {
               <MessageCircle size={15} className="text-gold-dark shrink-0" />
               WhatsApp
             </a>
-            <a href="mailto:huangsq0716@gmail.com" className="flex gap-3 items-center text-text-muted hover:text-foreground text-sm transition-colors">
+            <a href="mailto:Jiuhou2023@gmail.com" className="flex gap-3 items-center text-text-muted hover:text-foreground text-sm transition-colors">
               <Mail size={15} className="text-gold-dark shrink-0" />
-              huangsq0716@gmail.com
+              Jiuhou2023@gmail.com
             </a>
             <a href="https://www.instagram.com/after9barncl" target="_blank" rel="noopener noreferrer" className="flex gap-3 items-center text-text-muted hover:text-gold text-sm transition-colors">
               <InstagramIcon size={15} />
