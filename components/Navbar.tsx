@@ -28,6 +28,7 @@ const navLinks = [
 const aboutLinks = [
   { href: '/faqs', label: 'FAQs' },
   { href: '/privacy', label: 'Privacy Policy' },
+  { href: '/contact', label: 'Contact Us' },
 ]
 
 export default function Navbar() {

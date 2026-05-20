@@ -100,10 +100,26 @@ export default function Footer() {
           <div className="flex gap-3 text-text-muted text-sm">
             <Clock size={16} className="shrink-0 mt-0.5 text-gold-dark" />
             <span>
-              Every Day<br />
+              Mon – Sun<br />
               17:00 – 02:00
             </span>
           </div>
+        </div>
+      </div>
+
+      {/* Map */}
+      <div className="max-w-6xl mx-auto px-6 pb-10">
+        <div style={{ borderRadius: '2px', overflow: 'hidden', border: '1px solid var(--border)' }}>
+          <iframe
+            src="https://maps.google.com/maps?q=45-51+Stowell+Street+Newcastle+NE1+4YB&t=&z=16&ie=UTF8&iwloc=&output=embed"
+            width="100%"
+            height="250"
+            style={{ border: 0, display: 'block' }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="After 9 Bar & Kitchen location"
+          />
         </div>
       </div>
 

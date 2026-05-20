@@ -266,7 +266,7 @@ export default function HomePage() {
                 </p>
                 <p className="text-foreground text-sm">
                   17:00 – 02:00<br />
-                  <span className="text-text-muted">Every Day</span>
+                  <span className="text-text-muted">Mon – Sun</span>
                 </p>
               </div>
               <div className="flex flex-col items-center gap-3">
