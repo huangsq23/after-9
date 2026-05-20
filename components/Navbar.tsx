@@ -26,6 +26,7 @@ const navLinks = [
 ]
 
 const aboutLinks = [
+  { href: '/ourstory', label: 'Our Story' },
   { href: '/faqs', label: 'FAQs' },
   { href: '/privacy', label: 'Privacy Policy' },
   { href: '/contact', label: 'Contact Us' },
