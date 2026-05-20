@@ -52,7 +52,7 @@ export default function HomePage() {
           </p>
           <h1
             className="font-display font-light text-foreground mb-4 leading-tight"
-            style={{ fontSize: 'clamp(3.5rem, 10vw, 7rem)', letterSpacing: '-0.02em' }}
+            style={{ fontSize: 'clamp(3.5rem, 10vw, 7rem)', letterSpacing: '-0.02em', fontFamily: 'var(--font-archivo-black)' }}
           >
             AFTER 9
           </h1>

@@ -53,7 +53,7 @@ export default function Navbar() {
             />
             <span
               className="text-gold font-display font-light"
-              style={{ fontSize: '1.125rem', letterSpacing: '0.15em' }}
+              style={{ fontSize: '1.125rem', letterSpacing: '0.15em', fontFamily: 'var(--font-archivo-black)' }}
             >
               AFTER 9
             </span>
