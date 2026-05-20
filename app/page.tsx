@@ -42,7 +42,7 @@ export default function HomePage() {
             className="text-text-muted uppercase mb-5"
             style={{ letterSpacing: '0.2em', fontSize: '0.875rem' }}
           >
-            KITCHEN · NEWCASTLE
+            BAR & KITCHEN · NEWCASTLE
           </p>
           <p className="text-foreground italic mb-12" style={{ fontSize: '1.125rem' }}>
             Where the night truly begins.
