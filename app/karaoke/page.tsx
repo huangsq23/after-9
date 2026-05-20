@@ -34,7 +34,7 @@ export default function KaraokePage() {
   const roomType = watch('roomType')
   const duration = watch('duration') || 2
   const startTime = watch('startTime')
-  const room = roomType ? ROOM_CONFIG[roomType] : null
+  const room = roomType && roomType !== 'venue' ? ROOM_CONFIG[roomType] : null
 
   const getEndTime = (start: string, hours: number) => {
     if (!start) return ''

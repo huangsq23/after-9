@@ -30,14 +30,16 @@ export async function POST(req: NextRequest) {
         )
       }
       const data = parsed.data
-      const room = ROOM_CONFIG[data.roomType]
+      const roomLabel = data.roomType === 'venue'
+        ? 'Main Venue Hire'
+        : ROOM_CONFIG[data.roomType].label
       const reference = generateRef('KAR')
 
       await sendKaraokeNotification({
         reference,
         name: data.name,
         phone: data.phone,
-        roomLabel: room.label,
+        roomLabel,
         date: data.date,
         startTime: data.startTime,
         duration: data.duration,
