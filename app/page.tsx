@@ -1,8 +1,10 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { MapPin, Clock, Phone, ChevronDown } from 'lucide-react'
 import Marquee from '../components/Marquee'
 import FadeIn from '../components/FadeIn'
 import VenueCarousel from '../components/VenueCarousel'
+import heroLogo from '../public/hero-logo.png'
 
 const HERO_VIDEO_ID = '1191686397'
 
@@ -51,17 +53,16 @@ export default function HomePage() {
           >
             Premium Entertainment & Dining
           </p>
-          <h1
-            className="font-display font-light text-foreground mb-4 leading-tight"
-            style={{ fontSize: 'clamp(3.5rem, 10vw, 7rem)', letterSpacing: '-0.02em', fontFamily: 'var(--font-archivo-black)' }}
-          >
-            AFTER 9
-          </h1>
+          <Image
+            src={heroLogo}
+            alt="After 9 Bar"
+            className="mb-4 h-auto w-64 sm:w-80 md:w-[500px]"
+          />
           <p
             className="text-text-muted uppercase mb-5"
             style={{ letterSpacing: '0.2em', fontSize: '0.875rem' }}
           >
-            BAR & KITCHEN · NEWCASTLE
+            KITCHEN · NEWCASTLE
           </p>
           <p className="text-foreground italic mb-12" style={{ fontSize: '1.125rem' }}>
             Where the night truly begins.

@@ -1,9 +1,11 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
+import logoHorizontal from '../public/logo-horizontal.png'
 
 function InstagramIcon({ size = 18 }: { size?: number }) {
   return (
@@ -45,18 +47,12 @@ export default function Navbar() {
         }}
       >
         <nav className="max-w-6xl mx-auto px-6 flex items-center justify-between" style={{ height: '72px' }}>
-          <Link href="/" className="flex items-center gap-3">
-            <img
-              src="/logo.jpg"
-              alt="After 9"
-              style={{ height: '38px', width: 'auto', filter: 'invert(1) drop-shadow(0 0 4px rgba(0,0,0,0.5))' }}
+          <Link href="/" className="flex items-center">
+            <Image
+              src={logoHorizontal}
+              alt="After 9 Bar & Kitchen"
+              style={{ height: '56px', width: 'auto' }}
             />
-            <span
-              className="text-gold font-display font-light"
-              style={{ fontSize: '1.125rem', letterSpacing: '0.15em', fontFamily: 'var(--font-archivo-black)' }}
-            >
-              AFTER 9
-            </span>
           </Link>
 
           {/* Desktop links */}

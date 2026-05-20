@@ -1,6 +1,8 @@
 'use client'
 
+import Image from 'next/image'
 import { MapPin, Clock, Phone, Mail, MessageCircle } from 'lucide-react'
+import logoHorizontal from '../public/logo-horizontal.png'
 
 function InstagramIcon({ size = 18 }: { size?: number }) {
   return (
@@ -27,13 +29,10 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-10">
         {/* Brand */}
         <div>
-          <img
-            src="/logo.jpg"
-            alt="After 9"
-            style={{ height: '48px', width: 'auto', filter: 'brightness(0) invert(1)', marginBottom: '1rem' }}
-            onError={(e) => {
-              ;(e.currentTarget as HTMLImageElement).style.display = 'none'
-            }}
+          <Image
+            src={logoHorizontal}
+            alt="After 9 Bar & Kitchen"
+            style={{ height: '48px', width: 'auto', marginBottom: '1rem' }}
           />
           <p className="text-text-dim text-sm leading-relaxed">
             Premium Karaoke & Dining<br />Newcastle Chinatown
