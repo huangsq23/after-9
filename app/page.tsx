@@ -136,61 +136,8 @@ export default function HomePage() {
           </FadeIn>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* KTV Card */}
-            <FadeIn delay={100}>
-              <Link href="/karaoke" className="block group">
-                <div
-                  className="relative overflow-hidden border border-border hover:border-gold-dark transition-colors duration-300"
-                  style={{
-                    minHeight: '440px',
-                    background: 'linear-gradient(135deg, #0d0d0d, #1a1008)',
-                    borderRadius: '2px',
-                  }}
-                >
-                  <div className="relative z-10 p-10 flex flex-col" style={{ minHeight: '440px' }}>
-                    <p
-                      className="text-gold text-xs uppercase mb-4"
-                      style={{ letterSpacing: '0.25em' }}
-                    >
-                      Private Karaoke
-                    </p>
-                    <h3
-                      className="font-display font-light text-foreground mb-4"
-                      style={{ fontSize: '1.875rem' }}
-                    >
-                      Private Karaoke Suites
-                    </h3>
-                    <p className="text-text-muted text-sm leading-relaxed mb-8">
-                      Three beautifully appointed rooms for every group size. State-of-the-art sound systems, expansive song libraries, and attentive service throughout the night.
-                    </p>
-                    <div className="flex flex-col gap-0 mb-auto">
-                      {[
-                        { type: 'Small Room', cap: 'Up to 8 guests', price: '£30 / hr' },
-                        { type: 'Medium Room', cap: 'Up to 14 guests', price: '£40 / hr' },
-                        { type: 'Large Room', cap: 'Up to 20 guests', price: '£50 / hr' },
-                      ].map(r => (
-                        <div
-                          key={r.type}
-                          className="flex justify-between items-center py-3 border-b border-border"
-                        >
-                          <div>
-                            <span className="text-foreground text-sm">{r.type}</span>
-                            <span className="text-text-dim text-xs ml-2">{r.cap}</span>
-                          </div>
-                          <span className="text-gold text-sm font-medium">{r.price}</span>
-                        </div>
-                      ))}
-                    </div>
-                    <p className="text-gold text-sm mt-8 group-hover:text-gold-light transition-colors">
-                      Book Now →
-                    </p>
-                  </div>
-                </div>
-              </Link>
-            </FadeIn>
-
             {/* Dining Card */}
-            <FadeIn delay={200}>
+            <FadeIn delay={100}>
               <Link href="/dining" className="block group">
                 <div
                   className="relative overflow-hidden border border-border hover:border-accent-dark transition-colors duration-300"
@@ -205,16 +152,16 @@ export default function HomePage() {
                       className="text-xs uppercase mb-4"
                       style={{ color: 'var(--accent)', letterSpacing: '0.25em' }}
                     >
-                      Late Night Dining
+                      Chinese Cuisine
                     </p>
                     <h3
                       className="font-display font-light text-foreground mb-4"
                       style={{ fontSize: '1.875rem' }}
                     >
-                      Fine Dining
+                      Authentic Chinese Dining
                     </h3>
                     <p className="text-text-muted text-sm leading-relaxed mb-8">
-                      An expertly crafted menu for night-time indulgence. From elegant sharing plates to intimate dinners — every dish is designed to complement the evening.
+                      Explore our unique selection of Chinese dishes, crafted for sharing and perfect for any occasion. Open every night and served until 2AM.
                     </p>
                     <ul className="flex flex-col gap-3 mb-auto">
                       {[
@@ -236,6 +183,59 @@ export default function HomePage() {
                       style={{ color: 'var(--accent)' }}
                     >
                       Reserve Now →
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            </FadeIn>
+
+            {/* KTV Card */}
+            <FadeIn delay={200}>
+              <Link href="/karaoke" className="block group">
+                <div
+                  className="relative overflow-hidden border border-border hover:border-gold-dark transition-colors duration-300"
+                  style={{
+                    minHeight: '440px',
+                    background: 'linear-gradient(135deg, #0d0d0d, #1a1008)',
+                    borderRadius: '2px',
+                  }}
+                >
+                  <div className="relative z-10 p-10 flex flex-col" style={{ minHeight: '440px' }}>
+                    <p
+                      className="text-gold text-xs uppercase mb-4"
+                      style={{ letterSpacing: '0.25em' }}
+                    >
+                      Karaoke & Private Hire
+                    </p>
+                    <h3
+                      className="font-display font-light text-foreground mb-4"
+                      style={{ fontSize: '1.875rem' }}
+                    >
+                      Private Rooms & Venue Hire
+                    </h3>
+                    <p className="text-text-muted text-sm leading-relaxed mb-8">
+                      State-of-the-art karaoke suites for every group size, plus full venue hire for birthdays, celebrations, and corporate events. Tailored packages available — get in touch to plan your night.
+                    </p>
+                    <div className="flex flex-col gap-0 mb-auto">
+                      {[
+                        { type: 'Small Room', cap: 'Up to 8 guests', price: '£30 / hr' },
+                        { type: 'Medium Room', cap: 'Up to 14 guests', price: '£40 / hr' },
+                        { type: 'Large Room', cap: 'Up to 20 guests', price: '£50 / hr' },
+                      ].map(r => (
+                        <div
+                          key={r.type}
+                          className="flex justify-between items-center py-3 border-b border-border"
+                        >
+                          <div>
+                            <span className="text-foreground text-sm">{r.type}</span>
+                            <span className="text-text-dim text-xs ml-2">{r.cap}</span>
+                          </div>
+                          <span className="text-gold text-sm font-medium">{r.price}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <p className="text-gold text-sm mt-8 group-hover:text-gold-light transition-colors">
+                      Book Now →
                     </p>
                   </div>
                 </div>

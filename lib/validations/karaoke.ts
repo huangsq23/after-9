@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
 export const karaokeSchema = z.object({
-  roomType: z.enum(['small', 'medium', 'large']),
+  roomType: z.enum(['small', 'medium', 'large', 'venue']),
   date: z.string().min(1, 'Please select a date'),
   startTime: z.string().min(1, 'Please select a start time'),
   duration: z.number().min(1).max(9),

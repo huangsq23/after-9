@@ -103,7 +103,7 @@ export default function KaraokePage() {
         <p className="text-gold text-xs uppercase mb-6" style={{ letterSpacing: '0.25em' }}>
           Our Rooms
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
           {(
             Object.entries(ROOM_CONFIG) as [
               keyof typeof ROOM_CONFIG,
@@ -143,6 +143,29 @@ export default function KaraokePage() {
               </p>
             </div>
           ))}
+          {/* Main Venue Hire card */}
+          <div
+            className="p-6 text-center"
+            style={{
+              background: 'var(--surface)',
+              border: '1px solid var(--border)',
+              borderRadius: '2px',
+            }}
+          >
+            <p
+              className="text-xs uppercase mb-3"
+              style={{ color: 'var(--text-dim)', letterSpacing: '0.15em' }}
+            >
+              Main Venue Hire
+            </p>
+            <p
+              className="font-display font-light mb-2"
+              style={{ fontSize: '1.25rem', color: 'var(--gold)', lineHeight: 1.2 }}
+            >
+              Contact us for pricing
+            </p>
+            <p className="text-text-muted text-xs mt-2">Up to 200 guests</p>
+          </div>
         </div>
       </div>
 
@@ -259,6 +282,7 @@ export default function KaraokePage() {
                       {cfg.label} Room — £{cfg.price}/hr (≤ {cfg.capacity} guests)
                     </option>
                   ))}
+                  <option value="venue">Main Venue Hire — Contact us for pricing (≤ 200 guests)</option>
                 </select>
                 {errors.roomType && (
                   <p className="text-accent text-xs mt-1">{errors.roomType.message}</p>
@@ -274,12 +298,14 @@ export default function KaraokePage() {
                 <input
                   type="number"
                   min={1}
-                  max={room?.capacity ?? 20}
+                  max={roomType === 'venue' ? 200 : (room?.capacity ?? 20)}
                   {...register('guests', { valueAsNumber: true })}
                   className={inputClass}
                   style={{ borderRadius: '2px' }}
                 />
-                {room && (
+                {roomType === 'venue' ? (
+                  <p className="text-xs text-text-dim mt-1">Max 200 for Main Venue Hire</p>
+                ) : room && (
                   <p className="text-xs text-text-dim mt-1">
                     Max {room.capacity} for {room.label} room
                   </p>
