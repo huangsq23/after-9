@@ -25,33 +25,35 @@ function FacebookIcon({ size = 18 }: { size?: number }) {
 export default function Footer() {
   return (
     <footer style={{ background: '#080808', borderTop: '1px solid var(--gold-dark)' }}>
-      {/* Main columns */}
-      <div className="max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-10">
-        {/* Brand */}
+      {/* Brand row */}
+      <div className="max-w-6xl mx-auto px-6 pt-14 pb-10 flex items-center justify-between flex-wrap gap-6" style={{ borderBottom: '1px solid var(--border)' }}>
         <div>
           <Image
             src={logoHorizontal}
             alt="After 9 Bar & Kitchen"
-            style={{ height: '76px', width: 'auto', marginBottom: '1rem' }}
+            style={{ height: '64px', width: 'auto', marginBottom: '0.75rem' }}
           />
           <p className="text-text-dim text-sm leading-relaxed">
-            Premium Karaoke & Dining<br />Newcastle Chinatown
+            Premium Karaoke & Dining · Newcastle Chinatown
           </p>
-          <div className="flex gap-4 mt-5">
-            <a
-              href="https://www.instagram.com/after9barncl"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-text-dim hover:text-gold transition-colors"
-            >
-              <InstagramIcon size={18} />
-            </a>
-            <a href="#" className="text-text-dim hover:text-gold transition-colors">
-              <FacebookIcon size={18} />
-            </a>
-          </div>
         </div>
+        <div className="flex gap-4">
+          <a
+            href="https://www.instagram.com/after9barncl"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-text-dim hover:text-gold transition-colors"
+          >
+            <InstagramIcon size={18} />
+          </a>
+          <a href="#" className="text-text-dim hover:text-gold transition-colors">
+            <FacebookIcon size={18} />
+          </a>
+        </div>
+      </div>
 
+      {/* Four-column row: Location | Map | Hours | Contact */}
+      <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Location */}
         <div>
           <p className="text-xs uppercase text-gold mb-5" style={{ letterSpacing: '0.2em' }}>
@@ -63,6 +65,34 @@ export default function Footer() {
               45-51 Stowell Street<br />
               Newcastle upon Tyne<br />
               NE1 4YB
+            </span>
+          </div>
+        </div>
+
+        {/* Map */}
+        <div style={{ borderRadius: '2px', overflow: 'hidden', border: '1px solid var(--border)' }}>
+          <iframe
+            src="https://maps.google.com/maps?q=45-51+Stowell+Street+Newcastle+NE1+4YB&t=&z=16&ie=UTF8&iwloc=&output=embed"
+            width="100%"
+            height="190"
+            style={{ border: 0, display: 'block' }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="After 9 Bar & Kitchen location"
+          />
+        </div>
+
+        {/* Hours */}
+        <div>
+          <p className="text-xs uppercase text-gold mb-5" style={{ letterSpacing: '0.2em' }}>
+            Hours
+          </p>
+          <div className="flex gap-3 text-text-muted text-sm">
+            <Clock size={16} className="shrink-0 mt-0.5 text-gold-dark" />
+            <span>
+              Mon – Sun<br />
+              17:00 – 02:00
             </span>
           </div>
         </div>
@@ -90,36 +120,6 @@ export default function Footer() {
               @after9barncl
             </a>
           </div>
-        </div>
-
-        {/* Hours */}
-        <div>
-          <p className="text-xs uppercase text-gold mb-5" style={{ letterSpacing: '0.2em' }}>
-            Hours
-          </p>
-          <div className="flex gap-3 text-text-muted text-sm">
-            <Clock size={16} className="shrink-0 mt-0.5 text-gold-dark" />
-            <span>
-              Mon – Sun<br />
-              17:00 – 02:00
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* Map */}
-      <div className="max-w-6xl mx-auto px-6 pb-10">
-        <div style={{ borderRadius: '2px', overflow: 'hidden', border: '1px solid var(--border)' }}>
-          <iframe
-            src="https://maps.google.com/maps?q=45-51+Stowell+Street+Newcastle+NE1+4YB&t=&z=16&ie=UTF8&iwloc=&output=embed"
-            width="100%"
-            height="250"
-            style={{ border: 0, display: 'block' }}
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title="After 9 Bar & Kitchen location"
-          />
         </div>
       </div>
 
