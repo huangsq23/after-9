@@ -51,7 +51,7 @@ export default function Navbar() {
             <Image
               src={logoHorizontal}
               alt="After 9 Bar & Kitchen"
-              style={{ height: '56px', width: 'auto' }}
+              style={{ height: '64px', width: 'auto' }}
             />
           </Link>
 
