@@ -136,30 +136,31 @@ export default function Navbar() {
               </button>
 
               {aboutOpen && (
-                <div
-                  className="absolute top-full left-0 py-1 min-w-[160px] z-50"
-                  style={{
-                    marginTop: '10px',
-                    background: 'rgba(10,10,10,0.97)',
-                    border: '1px solid var(--border)',
-                    borderRadius: '2px',
-                    backdropFilter: 'blur(12px)',
-                  }}
-                >
-                  {aboutLinks.map(link => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      onClick={() => setAboutOpen(false)}
-                      className="block px-4 py-2.5 text-sm transition-colors duration-200 hover:text-foreground"
-                      style={{
-                        letterSpacing: '0.06em',
-                        color: pathname.startsWith(link.href) ? 'var(--gold)' : 'var(--text-muted)',
-                      }}
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
+                <div className="absolute top-full left-0 z-50" style={{ paddingTop: '10px', minWidth: '160px' }}>
+                  <div
+                    className="py-1"
+                    style={{
+                      background: 'rgba(10,10,10,0.97)',
+                      border: '1px solid var(--border)',
+                      borderRadius: '2px',
+                      backdropFilter: 'blur(12px)',
+                    }}
+                  >
+                    {aboutLinks.map(link => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        onClick={() => setAboutOpen(false)}
+                        className="block px-4 py-2.5 text-sm transition-colors duration-200 hover:text-foreground"
+                        style={{
+                          letterSpacing: '0.06em',
+                          color: pathname.startsWith(link.href) ? 'var(--gold)' : 'var(--text-muted)',
+                        }}
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
