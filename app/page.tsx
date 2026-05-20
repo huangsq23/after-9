@@ -6,8 +6,6 @@ import FadeIn from '../components/FadeIn'
 import VenueCarousel from '../components/VenueCarousel'
 import heroLogo from '../public/hero-logo.png'
 
-const HERO_VIDEO_ID = '1191686397'
-
 const testimonials = [
   {
     text: 'Incredible atmosphere — the karaoke rooms are top-notch and the food was absolutely delicious. Will definitely be back!',
@@ -32,7 +30,7 @@ export default function HomePage() {
       {/* Section 1: Full-Screen Video Hero */}
       <section className="relative overflow-hidden" style={{ height: '100vh' }}>
         <iframe
-          src={`https://player.vimeo.com/video/${HERO_VIDEO_ID}?autoplay=1&muted=1&loop=1&controls=0&background=1`}
+          src={`https://player.vimeo.com/video/1191686397?autoplay=1&muted=1&loop=1&controls=0&background=1`}
           className="vimeo-bg"
           allow="autoplay; fullscreen"
           title="After 9 atmosphere video"
