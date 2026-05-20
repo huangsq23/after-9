@@ -1,13 +1,14 @@
 import Link from 'next/link'
-import { MapPin, Clock, Phone, Mail, ChevronDown } from 'lucide-react'
+import { MapPin, Clock, Phone, ChevronDown } from 'lucide-react'
 import Marquee from '../components/Marquee'
 import FadeIn from '../components/FadeIn'
+import VenueCarousel from '../components/VenueCarousel'
 
 const HERO_VIDEO_ID = '1191686397'
 
 const testimonials = [
   {
-    text: 'Incredible atmosphere — the KTV rooms are top-notch and the food was absolutely delicious. Will definitely be back!',
+    text: 'Incredible atmosphere — the karaoke rooms are top-notch and the food was absolutely delicious. Will definitely be back!',
     name: 'Sarah M.',
     source: 'Google Review',
   },
@@ -67,7 +68,7 @@ export default function HomePage() {
           </p>
           <div className="flex gap-4 flex-wrap justify-center">
             <Link
-              href="/karaoke"
+              href="/dining"
               className="px-8 py-3 text-sm font-semibold uppercase hover:opacity-85 transition-opacity"
               style={{
                 background: 'linear-gradient(135deg, var(--gold-dark), var(--gold))',
@@ -76,10 +77,10 @@ export default function HomePage() {
                 borderRadius: '2px',
               }}
             >
-              Book Karaoke
+              Reserve a Table
             </Link>
             <Link
-              href="/dining"
+              href="/karaoke"
               className="px-8 py-3 text-sm font-semibold uppercase transition-colors duration-200 hover:bg-gold hover:text-background"
               style={{
                 border: '1px solid var(--gold)',
@@ -88,7 +89,7 @@ export default function HomePage() {
                 borderRadius: '2px',
               }}
             >
-              Reserve a Table
+              Book Karaoke
             </Link>
           </div>
         </div>
@@ -123,33 +124,10 @@ export default function HomePage() {
                   Nestled in the heart of Newcastle's vibrant Chinatown, After 9 is where premium karaoke suites meet fine late-night dining. Whether you're celebrating, socialising, or simply seeking something special — every visit is an occasion.
                 </p>
                 <p className="text-text-muted leading-relaxed mb-8 text-sm">
-                  Open every night from 5PM until 2AM, we offer three beautifully appointed private karaoke rooms alongside an expertly crafted dining menu — all under one roof on Stowell Street.
-                </p>
-                <Link
-                  href="/karaoke"
-                  className="text-gold text-sm uppercase hover:text-gold-light transition-colors"
-                  style={{
-                    letterSpacing: '0.1em',
-                    borderBottom: '1px solid var(--gold-dark)',
-                    paddingBottom: '2px',
-                  }}
-                >
-                  Discover More →
-                </Link>
-              </div>
-              <div
-                className="relative overflow-hidden flex items-center justify-center"
-                style={{
-                  minHeight: '420px',
-                  background: 'linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%)',
-                  border: '1px solid var(--border)',
-                  borderRadius: '2px',
-                }}
-              >
-                <p className="text-text-dim text-xs uppercase" style={{ letterSpacing: '0.2em' }}>
-                  Venue Photo
+                  Open every night from 5PM until 2AM, we offer beautifully appointed private karaoke rooms alongside an expertly crafted dining menu — all under one roof on Stowell Street.
                 </p>
               </div>
+              <VenueCarousel />
             </div>
           </FadeIn>
         </div>
@@ -286,51 +264,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Section 5: Promotional Banner */}
-      <FadeIn>
-        <section
-          className="py-20 px-6"
-          style={{
-            background: 'var(--surface)',
-            borderTop: '1px solid var(--border)',
-            borderBottom: '1px solid var(--border)',
-          }}
-        >
-          <div className="max-w-3xl mx-auto text-center">
-            <p
-              className="text-gold text-xs uppercase mb-4"
-              style={{ letterSpacing: '0.3em' }}
-            >
-              Special Offer
-            </p>
-            <h2
-              className="font-display font-light text-foreground mb-4"
-              style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)' }}
-            >
-              Happy Hour · 5PM – 7PM
-            </h2>
-            <p className="text-text-muted mb-8 text-sm leading-relaxed">
-              Kick off your evening in style. Selected cocktails from{' '}
-              <span className="text-gold font-medium">£6</span> · Sharing plates from{' '}
-              <span className="text-gold font-medium">£8</span>
-            </p>
-            <Link
-              href="/dining"
-              className="inline-block text-sm font-medium uppercase hover:opacity-90 transition-opacity"
-              style={{
-                padding: '0.75rem 2rem',
-                background: 'linear-gradient(135deg, var(--gold-dark), var(--gold))',
-                color: '#0a0a0a',
-                letterSpacing: '0.08em',
-                borderRadius: '2px',
-              }}
-            >
-              Reserve Your Table
-            </Link>
-          </div>
-        </section>
-      </FadeIn>
-
       {/* Section 6: Testimonials */}
       <section className="py-24 px-6">
         <div className="max-w-6xl mx-auto">
@@ -390,7 +323,7 @@ export default function HomePage() {
             >
               Find Us
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
               <div className="flex flex-col items-center gap-3">
                 <Clock size={22} className="text-gold" />
                 <p className="text-xs uppercase text-text-dim" style={{ letterSpacing: '0.1em' }}>
@@ -420,16 +353,6 @@ export default function HomePage() {
                   <a href="tel:07552791612" className="hover:text-gold transition-colors">
                     07552 791612
                   </a>
-                </p>
-              </div>
-              <div className="flex flex-col items-center gap-3">
-                <Mail size={22} className="text-gold" />
-                <p className="text-xs uppercase text-text-dim" style={{ letterSpacing: '0.1em' }}>
-                  Bookings
-                </p>
-                <p className="text-foreground text-sm">
-                  1-hour slots<br />
-                  <span className="text-text-muted">Instant confirmation</span>
                 </p>
               </div>
             </div>

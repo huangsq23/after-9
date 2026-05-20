@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import { MapPin, Clock, Phone, Mail, MessageCircle } from 'lucide-react'
 
 function InstagramIcon({ size = 18 }: { size?: number }) {
@@ -22,57 +21,8 @@ function FacebookIcon({ size = 18 }: { size?: number }) {
 }
 
 export default function Footer() {
-  const [email, setEmail] = useState('')
-  const [subscribed, setSubscribed] = useState(false)
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (email) setSubscribed(true)
-  }
-
   return (
     <footer style={{ background: '#080808', borderTop: '1px solid var(--gold-dark)' }}>
-      {/* Newsletter */}
-      <div className="border-b border-border py-12 px-6">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          <div>
-            <p className="text-xs uppercase text-gold mb-1" style={{ letterSpacing: '0.2em' }}>
-              Stay in the loop
-            </p>
-            <p className="text-foreground font-display font-light text-xl">
-              Get exclusive offers & updates
-            </p>
-          </div>
-          {subscribed ? (
-            <p className="text-gold text-sm tracking-wider">Thank you for subscribing ✓</p>
-          ) : (
-            <form onSubmit={handleSubscribe} className="flex w-full max-w-md">
-              <input
-                type="email"
-                placeholder="Your email address"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                required
-                className="flex-1 px-4 py-3 text-sm text-foreground bg-surface-2 border border-border outline-none"
-                style={{ borderRadius: '2px 0 0 2px' }}
-              />
-              <button
-                type="submit"
-                className="px-5 py-3 text-xs font-medium uppercase hover:opacity-90 transition-opacity"
-                style={{
-                  background: 'var(--gold)',
-                  color: '#0a0a0a',
-                  letterSpacing: '0.08em',
-                  borderRadius: '0 2px 2px 0',
-                }}
-              >
-                Subscribe
-              </button>
-            </form>
-          )}
-        </div>
-      </div>
-
       {/* Main columns */}
       <div className="max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-10">
         {/* Brand */}

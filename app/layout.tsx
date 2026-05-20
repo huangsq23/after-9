@@ -24,7 +24,7 @@ const archivoblack = Archivo_Black({
 
 export const metadata: Metadata = {
   title: 'After 9 — Bar & Kitchen Newcastle',
-  description: 'Premium KTV suites and fine dining in Newcastle Chinatown. Open daily 17:00 – 02:00.',
+  description: 'Premium Karaoke suites and fine dining in Newcastle Chinatown. Open daily 17:00 – 02:00.',
 }
 
 export default function RootLayout({

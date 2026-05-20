@@ -102,7 +102,7 @@ export default function KtvPage() {
             Private Karaoke
           </p>
           <h1 className="font-display font-light text-foreground" style={{ fontSize: '2.5rem' }}>
-            KTV Room Booking
+            Karaoke Room Booking
           </h1>
         </div>
       </section>

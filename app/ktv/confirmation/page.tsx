@@ -29,7 +29,7 @@ function ConfirmationContent() {
         Thank you, {decodeURIComponent(name)}!
       </h1>
       <p style={{ color: '#666', lineHeight: 1.7, marginBottom: '2.5rem' }}>
-        Your KTV room has been reserved. A confirmation email has been sent with your booking details.
+        Your karaoke room has been reserved. A confirmation email has been sent with your booking details.
       </p>
 
       {/* Reference */}
