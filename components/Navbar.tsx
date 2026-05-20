@@ -3,8 +3,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useState, useEffect } from 'react'
-import { Menu, X } from 'lucide-react'
+import { useState, useEffect, useRef } from 'react'
+import { Menu, X, ChevronDown } from 'lucide-react'
 import logoHorizontal from '../public/logo-horizontal.png'
 
 function InstagramIcon({ size = 18 }: { size?: number }) {
@@ -25,16 +25,35 @@ const navLinks = [
   { href: MENU_URL, label: 'Menu', external: true },
 ]
 
+const aboutLinks = [
+  { href: '/faqs', label: 'FAQs' },
+  { href: '/privacy', label: 'Privacy Policy' },
+]
+
 export default function Navbar() {
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [aboutOpen, setAboutOpen] = useState(false)
+  const aboutRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  useEffect(() => {
+    const onClickOutside = (e: MouseEvent) => {
+      if (aboutRef.current && !aboutRef.current.contains(e.target as Node)) {
+        setAboutOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', onClickOutside)
+    return () => document.removeEventListener('mousedown', onClickOutside)
+  }, [])
+
+  const isAboutActive = aboutLinks.some(l => pathname.startsWith(l.href))
 
   return (
     <>
@@ -85,6 +104,66 @@ export default function Navbar() {
                 </Link>
               )
             )}
+
+            {/* About dropdown */}
+            <div
+              ref={aboutRef}
+              className="relative"
+              onMouseEnter={() => setAboutOpen(true)}
+              onMouseLeave={() => setAboutOpen(false)}
+            >
+              <button
+                onClick={() => setAboutOpen(o => !o)}
+                className="flex items-center gap-1 text-sm transition-colors duration-200"
+                style={{
+                  letterSpacing: '0.08em',
+                  color: isAboutActive ? 'var(--gold)' : 'var(--text-muted)',
+                  borderBottom: isAboutActive ? '1px solid var(--gold)' : '1px solid transparent',
+                  paddingBottom: '2px',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                }}
+              >
+                About
+                <ChevronDown
+                  size={12}
+                  style={{
+                    transition: 'transform 0.2s ease',
+                    transform: aboutOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                  }}
+                />
+              </button>
+
+              {aboutOpen && (
+                <div
+                  className="absolute top-full left-0 py-1 min-w-[160px] z-50"
+                  style={{
+                    marginTop: '10px',
+                    background: 'rgba(10,10,10,0.97)',
+                    border: '1px solid var(--border)',
+                    borderRadius: '2px',
+                    backdropFilter: 'blur(12px)',
+                  }}
+                >
+                  {aboutLinks.map(link => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setAboutOpen(false)}
+                      className="block px-4 py-2.5 text-sm transition-colors duration-200 hover:text-foreground"
+                      style={{
+                        letterSpacing: '0.06em',
+                        color: pathname.startsWith(link.href) ? 'var(--gold)' : 'var(--text-muted)',
+                      }}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
             <a
               href="https://www.instagram.com/after9barncl"
               target="_blank"
@@ -122,7 +201,7 @@ export default function Navbar() {
       {/* Mobile overlay */}
       {mobileOpen && (
         <div
-          className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-10"
+          className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-8"
           style={{ background: 'rgba(10,10,10,0.97)' }}
         >
           {navLinks.map(link =>
@@ -153,11 +232,31 @@ export default function Navbar() {
               </Link>
             )
           )}
+
+          {/* About sub-links */}
+          <div className="flex flex-col items-center gap-4" style={{ borderTop: '1px solid var(--border)', paddingTop: '1.5rem', width: '80%' }}>
+            <p className="text-text-dim text-xs uppercase" style={{ letterSpacing: '0.2em' }}>About</p>
+            {aboutLinks.map(link => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="font-display font-light hover:text-gold transition-colors duration-200"
+                style={{
+                  fontSize: '1.5rem',
+                  color: pathname.startsWith(link.href) ? 'var(--gold)' : 'var(--foreground)',
+                }}
+                onClick={() => setMobileOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+
           <a
             href="https://www.instagram.com/after9barncl"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-text-muted hover:text-gold transition-colors mt-4"
+            className="text-text-muted hover:text-gold transition-colors mt-2"
             onClick={() => setMobileOpen(false)}
           >
             <InstagramIcon size={24} />
