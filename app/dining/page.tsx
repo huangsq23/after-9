@@ -83,9 +83,12 @@ export default function DiningPage() {
 
       {/* Form */}
       <div className="max-w-3xl mx-auto px-6 py-12">
-        <p className="text-text-muted text-sm mb-10" style={{ lineHeight: 1.6 }}>
+        <p className="text-text-muted text-sm mb-2" style={{ lineHeight: 1.6 }}>
           Opening hours: 17:00 – 02:00 · No deposit required · We will confirm your reservation
           shortly
+        </p>
+        <p className="text-text-dim text-sm mb-10" style={{ lineHeight: 1.6 }}>
+          Please note: Last food orders at 1:15 AM. Drinks service continues until 2:00 AM.
         </p>
 
         <form onSubmit={handleSubmit(onSubmit)}>
