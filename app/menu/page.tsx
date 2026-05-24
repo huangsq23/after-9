@@ -6,12 +6,12 @@ export const metadata = {
 
 const menus = [
   {
-    title: 'Authentic Chinese Food & BBQ',
-    href: '/Authentic_Chinese_Food_and_BBQ_menu.pdf',
-  },
-  {
     title: 'Classic Dinner Menu',
     href: '/Classic_Dinner_Menu.pdf',
+  },
+  {
+    title: 'Authentic Chinese Food & BBQ',
+    href: '/Authentic_Chinese_Food_and_BBQ_menu.pdf',
   },
   {
     title: 'Drinks Menu',
