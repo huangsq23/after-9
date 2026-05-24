@@ -76,34 +76,21 @@ export default function Navbar() {
 
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map(link =>
-              link.external ? (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-text-muted hover:text-foreground transition-colors duration-200"
-                  style={{ letterSpacing: '0.08em' }}
-                >
-                  {link.label}
-                </a>
-              ) : (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-sm transition-colors duration-200"
-                  style={{
-                    letterSpacing: '0.08em',
-                    color: pathname.startsWith(link.href) ? 'var(--gold)' : 'var(--text-muted)',
-                    borderBottom: pathname.startsWith(link.href) ? '1px solid var(--gold)' : '1px solid transparent',
-                    paddingBottom: '2px',
-                  }}
-                >
-                  {link.label}
-                </Link>
-              )
-            )}
+            {navLinks.map(link => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm transition-colors duration-200"
+                style={{
+                  letterSpacing: '0.08em',
+                  color: pathname.startsWith(link.href) ? 'var(--gold)' : 'var(--text-muted)',
+                  borderBottom: pathname.startsWith(link.href) ? '1px solid var(--gold)' : '1px solid transparent',
+                  paddingBottom: '2px',
+                }}
+              >
+                {link.label}
+              </Link>
+            ))}
 
             {/* About dropdown */}
             <div
@@ -205,34 +192,20 @@ export default function Navbar() {
           className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-8"
           style={{ background: 'rgba(10,10,10,0.97)' }}
         >
-          {navLinks.map(link =>
-            link.external ? (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-foreground hover:text-gold transition-colors duration-200 font-display font-light"
-                style={{ fontSize: '2rem' }}
-                onClick={() => setMobileOpen(false)}
-              >
-                {link.label}
-              </a>
-            ) : (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="font-display font-light hover:text-gold transition-colors duration-200"
-                style={{
-                  fontSize: '2rem',
-                  color: pathname.startsWith(link.href) ? 'var(--gold)' : 'var(--foreground)',
-                }}
-                onClick={() => setMobileOpen(false)}
-              >
-                {link.label}
-              </Link>
-            )
-          )}
+          {navLinks.map(link => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="font-display font-light hover:text-gold transition-colors duration-200"
+              style={{
+                fontSize: '2rem',
+                color: pathname.startsWith(link.href) ? 'var(--gold)' : 'var(--foreground)',
+              }}
+              onClick={() => setMobileOpen(false)}
+            >
+              {link.label}
+            </Link>
+          ))}
 
           {/* About sub-links */}
           <div className="flex flex-col items-center gap-4" style={{ borderTop: '1px solid var(--border)', paddingTop: '1.5rem', width: '80%' }}>
