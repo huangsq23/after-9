@@ -1,5 +1,5 @@
 import { Resend } from 'resend'
-import { signBookingToken, BookingPayload } from '../token'
+import type { BookingPayload } from '../token'
 
 function getResend() {
   const key = process.env.RESEND_API_KEY
@@ -83,11 +83,10 @@ export async function sendDiningNotification({
     </table>
   `
 
-  const tokenPayload: BookingPayload = { reference, name, email, phone, date, time, guests, notes }
-  const token = signBookingToken(tokenPayload)
+  const encoded = encodeURIComponent(Buffer.from(JSON.stringify({ reference, name, email, phone, date, time, guests, notes })).toString('base64url'))
   const base = getBaseUrl()
-  const confirmUrl = `${base}/api/booking/respond?action=confirm&data=${encodeURIComponent(token)}`
-  const declineUrl = `${base}/api/booking/respond?action=decline&data=${encodeURIComponent(token)}`
+  const confirmUrl = `${base}/api/booking/respond?action=confirm&data=${encoded}`
+  const declineUrl = `${base}/api/booking/respond?action=decline&data=${encoded}`
 
   const actionButtons = `
     <table style="width:100%;margin-top:32px;border-collapse:collapse;">
@@ -100,7 +99,7 @@ export async function sendDiningNotification({
         </td>
       </tr>
     </table>
-    <p style="color:#555;font-size:12px;margin-top:16px;">Clicking a button will immediately send an email to the guest. Each link can only be used once per response.</p>
+    <p style="color:#555;font-size:12px;margin-top:16px;">Clicking a button will immediately send the guest an email.</p>
   `
 
   const resend = getResend()

@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server'
-import { verifyBookingToken } from '../../../../lib/token'
+import { decodeBookingToken } from '../../../../lib/token'
 import { sendDiningConfirmation, sendDiningDecline } from '../../../../lib/email'
 
 function resultPage(action: 'confirm' | 'decline', ok: boolean, error?: string) {
@@ -54,9 +54,9 @@ export async function GET(req: NextRequest) {
     return resultPage('confirm', false, 'Invalid request.')
   }
 
-  const payload = verifyBookingToken(data)
+  const payload = decodeBookingToken(data)
   if (!payload) {
-    return resultPage(action, false, 'Invalid or tampered link. Please contact the guest directly.')
+    return resultPage(action, false, 'Could not read booking data. Please contact the guest directly.')
   }
 
   try {
