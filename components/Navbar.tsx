@@ -17,12 +17,10 @@ function InstagramIcon({ size = 18 }: { size?: number }) {
   )
 }
 
-const MENU_URL = 'https://www.instagram.com/p/DIRKYZtIPAs/?img_index=1&igsh=MTQ3dm14dTNyYWZtbA%3D%3D'
-
 const navLinks = [
   { href: '/dining', label: 'Table Reservation' },
   { href: '/karaoke', label: 'Karaoke' },
-  { href: MENU_URL, label: 'Menu', external: true },
+  { href: '/menu', label: 'Menu' },
 ]
 
 const aboutLinks = [
