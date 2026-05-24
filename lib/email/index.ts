@@ -242,9 +242,8 @@ function emailWrapper(content: string) {
     <html>
     <body style="margin:0;padding:0;background:#0a0a0a;font-family:Georgia,serif;">
       <div style="max-width:560px;margin:40px auto;background:#141414;border:1px solid #2a2a2a;border-radius:4px;overflow:hidden;">
-        <div style="background:#0a0a0a;padding:24px 32px;border-bottom:1px solid #2a2a2a;">
-          <span style="font-size:20px;color:#C9A84C;letter-spacing:0.05em;font-weight:400;">AFTER 9</span>
-          <span style="font-size:12px;color:#555;margin-left:12px;letter-spacing:0.1em;">BAR & KITCHEN</span>
+        <div style="background:#0a0a0a;padding:20px 32px;border-bottom:1px solid #2a2a2a;">
+          <img src="https://www.after9bar-newcastle.co.uk/logo-horizontal.png" alt="After 9 Bar &amp; Kitchen" height="45" style="display:block;height:45px;width:auto;">
         </div>
         <div style="padding:32px;">
           ${content}
