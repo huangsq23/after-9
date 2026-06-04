@@ -110,7 +110,7 @@ export default function KtvPage() {
       {/* Form */}
       <div className="max-w-3xl mx-auto px-6 py-12">
         <p className="text-text-muted text-sm mb-10" style={{ lineHeight: 1.6 }}>
-          Opening hours: 17:00 – 02:00 · Bookings in 1-hour slots · Deposit required
+          Opening hours: 17:00 – 02:00 · Mon &amp; Wed – Sun (closed Tuesdays) · Bookings in 1-hour slots · Deposit required
         </p>
 
         <form onSubmit={handleSubmit(onSubmit)}>

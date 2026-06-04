@@ -2,7 +2,13 @@ import { z } from 'zod'
 
 export const ktvSchema = z.object({
   roomType: z.enum(['small', 'medium', 'large']),
-  date: z.string().min(1, 'Please select a date'),
+  date: z.string()
+    .min(1, 'Please select a date')
+    .refine(val => {
+      if (!val) return true
+      const [y, m, d] = val.split('-').map(Number)
+      return new Date(y, m - 1, d).getDay() !== 2
+    }, 'We are closed on Tuesdays. Please choose another day.'),
   startTime: z.string().min(1, 'Please select a start time'),
   duration: z.number().min(1).max(9),
   guests: z.number().min(1, 'At least 1 guest required'),

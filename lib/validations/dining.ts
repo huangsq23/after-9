@@ -1,7 +1,13 @@
 import { z } from 'zod'
 
 export const diningSchema = z.object({
-  date: z.string().min(1, 'Please select a date'),
+  date: z.string()
+    .min(1, 'Please select a date')
+    .refine(val => {
+      if (!val) return true
+      const [y, m, d] = val.split('-').map(Number)
+      return new Date(y, m - 1, d).getDay() !== 2
+    }, 'We are closed on Tuesdays. Please choose another day.'),
   time: z.string().min(1, 'Please select a time'),
   guests: z.number().min(1, 'At least 1 guest required').max(50, 'Maximum 50 guests'),
   name: z.string().min(2, 'Full name is required'),
