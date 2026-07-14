@@ -4,9 +4,9 @@ import Image from 'next/image'
 import { MapPin, Clock, Phone, Mail, MessageCircle } from 'lucide-react'
 import logoHorizontal from '../public/logo-horizontal.png'
 
-function InstagramIcon({ size = 18 }: { size?: number }) {
+function InstagramIcon({ size = 18, className = '' }: { size?: number; className?: string }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className={className}>
       <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
       <circle cx="12" cy="12" r="4"/>
       <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
@@ -14,10 +14,18 @@ function InstagramIcon({ size = 18 }: { size?: number }) {
   )
 }
 
-function FacebookIcon({ size = 18 }: { size?: number }) {
+function FacebookIcon({ size = 18, className = '' }: { size?: number; className?: string }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className={className}>
       <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+    </svg>
+  )
+}
+
+function TikTokIcon({ size = 18, className = '' }: { size?: number; className?: string }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M16.6 5.82c-.9-.85-1.45-2-1.6-3.27h-3.03v13.6c0 1.67-1.36 3.02-3.03 3.02a3.03 3.03 0 0 1-3.03-3.02 3.03 3.03 0 0 1 3.03-3.03c.3 0 .58.04.85.12v-3.09a6.2 6.2 0 0 0-.85-.06 6.06 6.06 0 0 0-6.06 6.06A6.06 6.06 0 0 0 8.94 22a6.06 6.06 0 0 0 6.06-6.06V9.01a8.16 8.16 0 0 0 4.76 1.53V7.5a5.1 5.1 0 0 1-3.16-1.68z"/>
     </svg>
   )
 }
@@ -37,17 +45,33 @@ export default function Footer() {
             Premium Karaoke & Dining · Newcastle Chinatown
           </p>
         </div>
-        <div className="flex gap-4">
+        <div className="flex items-center gap-4">
           <a
             href="https://www.instagram.com/after9barncl"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Instagram"
             className="text-text-dim hover:text-gold transition-colors"
           >
-            <InstagramIcon size={18} />
+            <InstagramIcon size={24} className="w-6 h-6" />
           </a>
-          <a href="#" className="text-text-dim hover:text-gold transition-colors">
-            <FacebookIcon size={18} />
+          <a
+            href="https://www.tiktok.com/@after9bar"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="TikTok"
+            className="text-text-dim hover:text-gold transition-colors"
+          >
+            <TikTokIcon size={24} className="w-6 h-6" />
+          </a>
+          <a
+            href="https://www.facebook.com/share/1DMaLNNysV/?mibextid=wwXIfr"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+            className="text-text-dim hover:text-gold transition-colors"
+          >
+            <FacebookIcon size={24} className="w-6 h-6" />
           </a>
         </div>
       </div>
@@ -91,8 +115,9 @@ export default function Footer() {
           <div className="flex gap-3 text-text-muted text-sm">
             <Clock size={16} className="shrink-0 mt-0.5 text-gold-dark" />
             <span>
-              Mon – Sun<br />
-              17:00 – 02:00
+              Mon &amp; Wed – Sun<br />
+              17:00 – 02:00<br />
+              <span style={{ color: 'var(--text-dim)', fontSize: '0.8125rem' }}>Closed Tuesdays</span>
             </span>
           </div>
         </div>
@@ -115,9 +140,17 @@ export default function Footer() {
               <Mail size={15} className="text-gold-dark shrink-0" />
               Jiuhou2023@gmail.com
             </a>
-            <a href="https://www.instagram.com/after9barncl" target="_blank" rel="noopener noreferrer" className="flex gap-3 items-center text-text-muted hover:text-gold text-sm transition-colors">
+            <a href="https://www.instagram.com/after9barncl" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex gap-3 items-center text-text-muted hover:text-gold text-sm transition-colors">
               <InstagramIcon size={15} />
               @after9barncl
+            </a>
+            <a href="https://www.tiktok.com/@after9bar" target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="flex gap-3 items-center text-text-muted hover:text-gold text-sm transition-colors">
+              <TikTokIcon size={15} />
+              @after9bar
+            </a>
+            <a href="https://www.facebook.com/share/1DMaLNNysV/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="flex gap-3 items-center text-text-muted hover:text-gold text-sm transition-colors">
+              <FacebookIcon size={15} />
+              Facebook
             </a>
           </div>
         </div>

@@ -17,6 +17,22 @@ function InstagramIcon({ size = 18 }: { size?: number }) {
   )
 }
 
+function FacebookIcon({ size = 18 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+    </svg>
+  )
+}
+
+function TikTokIcon({ size = 18 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M16.6 5.82c-.9-.85-1.45-2-1.6-3.27h-3.03v13.6c0 1.67-1.36 3.02-3.03 3.02a3.03 3.03 0 0 1-3.03-3.02 3.03 3.03 0 0 1 3.03-3.03c.3 0 .58.04.85.12v-3.09a6.2 6.2 0 0 0-.85-.06 6.06 6.06 0 0 0-6.06 6.06A6.06 6.06 0 0 0 8.94 22a6.06 6.06 0 0 0 6.06-6.06V9.01a8.16 8.16 0 0 0 4.76 1.53V7.5a5.1 5.1 0 0 1-3.16-1.68z"/>
+    </svg>
+  )
+}
+
 const navLinks = [
   { href: '/dining', label: 'Table Reservation' },
   { href: '/karaoke', label: 'Karaoke' },
@@ -156,9 +172,28 @@ export default function Navbar() {
               href="https://www.instagram.com/after9barncl"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Instagram"
               className="text-text-muted hover:text-gold transition-colors duration-200"
             >
               <InstagramIcon size={17} />
+            </a>
+            <a
+              href="https://www.tiktok.com/@after9bar"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="TikTok"
+              className="text-text-muted hover:text-gold transition-colors duration-200"
+            >
+              <TikTokIcon size={17} />
+            </a>
+            <a
+              href="https://www.facebook.com/share/1DMaLNNysV/?mibextid=wwXIfr"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              className="text-text-muted hover:text-gold transition-colors duration-200"
+            >
+              <FacebookIcon size={17} />
             </a>
             <Link
               href="/karaoke"
@@ -226,15 +261,38 @@ export default function Navbar() {
             ))}
           </div>
 
-          <a
-            href="https://www.instagram.com/after9barncl"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-text-muted hover:text-gold transition-colors mt-2"
-            onClick={() => setMobileOpen(false)}
-          >
-            <InstagramIcon size={24} />
-          </a>
+          <div className="flex items-center gap-6 mt-2">
+            <a
+              href="https://www.instagram.com/after9barncl"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="text-text-muted hover:text-gold transition-colors"
+              onClick={() => setMobileOpen(false)}
+            >
+              <InstagramIcon size={24} />
+            </a>
+            <a
+              href="https://www.tiktok.com/@after9bar"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="TikTok"
+              className="text-text-muted hover:text-gold transition-colors"
+              onClick={() => setMobileOpen(false)}
+            >
+              <TikTokIcon size={24} />
+            </a>
+            <a
+              href="https://www.facebook.com/share/1DMaLNNysV/?mibextid=wwXIfr"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              className="text-text-muted hover:text-gold transition-colors"
+              onClick={() => setMobileOpen(false)}
+            >
+              <FacebookIcon size={24} />
+            </a>
+          </div>
         </div>
       )}
     </>

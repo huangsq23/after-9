@@ -311,21 +311,51 @@ export default function HomePage() {
             >
               Follow Us
             </h2>
-            <p className="text-text-muted text-sm mb-10">@after9barncl</p>
-            <a
-              href="https://www.instagram.com/after9barncl"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 text-sm uppercase text-foreground hover:text-gold hover:border-gold transition-colors duration-300"
-              style={{
-                padding: '0.75rem 2rem',
-                border: '1px solid var(--border)',
-                letterSpacing: '0.08em',
-                borderRadius: '2px',
-              }}
-            >
-              View on Instagram →
-            </a>
+            <p className="text-text-muted text-sm mb-10">Instagram · TikTok · Facebook</p>
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <a
+                href="https://www.instagram.com/after9barncl"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 text-sm uppercase text-foreground hover:text-gold hover:border-gold transition-colors duration-300"
+                style={{
+                  padding: '0.75rem 2rem',
+                  border: '1px solid var(--border)',
+                  letterSpacing: '0.08em',
+                  borderRadius: '2px',
+                }}
+              >
+                View on Instagram →
+              </a>
+              <a
+                href="https://www.tiktok.com/@after9bar"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 text-sm uppercase text-foreground hover:text-gold hover:border-gold transition-colors duration-300"
+                style={{
+                  padding: '0.75rem 2rem',
+                  border: '1px solid var(--border)',
+                  letterSpacing: '0.08em',
+                  borderRadius: '2px',
+                }}
+              >
+                View on TikTok →
+              </a>
+              <a
+                href="https://www.facebook.com/share/1DMaLNNysV/?mibextid=wwXIfr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 text-sm uppercase text-foreground hover:text-gold hover:border-gold transition-colors duration-300"
+                style={{
+                  padding: '0.75rem 2rem',
+                  border: '1px solid var(--border)',
+                  letterSpacing: '0.08em',
+                  borderRadius: '2px',
+                }}
+              >
+                View on Facebook →
+              </a>
+            </div>
           </div>
         </section>
       </FadeIn>
