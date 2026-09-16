@@ -2,26 +2,18 @@ import { NextRequest } from 'next/server'
 import { decodeBookingToken } from '../../../../lib/token'
 import { sendDiningConfirmation, sendDiningDecline } from '../../../../lib/email'
 
-function resultPage(action: 'confirm' | 'decline', ok: boolean, error?: string) {
-  const isConfirm = action === 'confirm'
-  const accentColor = ok ? (isConfirm ? '#4CAF50' : '#C23B5C') : '#888'
-  const icon = ok ? (isConfirm ? '✅' : '❌') : '⚠️'
-  const heading = ok
-    ? isConfirm ? 'Confirmation Sent' : 'Decline Sent'
-    : 'Something Went Wrong'
-  const body = ok
-    ? isConfirm
-      ? 'The booking confirmation email has been sent to the guest.'
-      : 'The decline email has been sent to the guest.'
-    : error ?? 'An unexpected error occurred. Please contact the guest directly.'
+// Tracks references that have already been responded to this instance lifetime.
+// Prevents double-sending if the venue staff clicks the button more than once.
+const respondedRefs = new Set<string>()
 
+function html(title: string, icon: string, heading: string, body: string, accentColor: string, status = 200) {
   return new Response(
     `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>${heading} — After 9</title>
+  <title>${title} — After 9</title>
   <style>
     *{box-sizing:border-box}
     body{margin:0;background:#0a0a0a;color:#f0ece4;font-family:Georgia,serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
@@ -41,7 +33,7 @@ function resultPage(action: 'confirm' | 'decline', ok: boolean, error?: string) 
   </div>
 </body>
 </html>`,
-    { status: ok ? 200 : 500, headers: { 'Content-Type': 'text/html; charset=utf-8' } }
+    { status, headers: { 'Content-Type': 'text/html; charset=utf-8' } }
   )
 }
 
@@ -51,12 +43,25 @@ export async function GET(req: NextRequest) {
   const data = searchParams.get('data')
 
   if ((action !== 'confirm' && action !== 'decline') || !data) {
-    return resultPage('confirm', false, 'Invalid request.')
+    return html('Invalid Request', '⚠️', 'Something Went Wrong', 'Invalid request.', '#888', 400)
   }
 
   const payload = decodeBookingToken(data)
   if (!payload) {
-    return resultPage(action, false, 'Could not read booking data. Please contact the guest directly.')
+    return html('Error', '⚠️', 'Something Went Wrong', 'Could not read booking data. Please contact the guest directly.', '#888', 400)
+  }
+
+  const key = `${payload.reference}:${action}`
+
+  if (respondedRefs.has(key)) {
+    const label = action === 'confirm' ? 'Confirmation' : 'Decline'
+    return html(
+      'Already Sent',
+      'ℹ️',
+      'Already Sent',
+      `The ${label.toLowerCase()} email for booking <strong style="color:#ccc">${payload.reference}</strong> has already been sent to the guest.`,
+      '#888'
+    )
   }
 
   try {
@@ -65,9 +70,19 @@ export async function GET(req: NextRequest) {
     } else {
       await sendDiningDecline(payload)
     }
-    return resultPage(action, true)
+    respondedRefs.add(key)
+    const isConfirm = action === 'confirm'
+    return html(
+      isConfirm ? 'Confirmation Sent' : 'Decline Sent',
+      isConfirm ? '✅' : '❌',
+      isConfirm ? 'Confirmation Sent' : 'Decline Sent',
+      isConfirm
+        ? 'The booking confirmation email has been sent to the guest.'
+        : 'The decline email has been sent to the guest.',
+      isConfirm ? '#4CAF50' : '#C23B5C'
+    )
   } catch (err) {
     console.error('[/api/booking/respond] error:', err)
-    return resultPage(action, false, 'Failed to send email. Please try again or contact the guest directly.')
+    return html('Error', '⚠️', 'Something Went Wrong', 'Failed to send email. Please try again or contact the guest directly.', '#888', 500)
   }
 }
