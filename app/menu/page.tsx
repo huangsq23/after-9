@@ -15,7 +15,7 @@ const menus = [
   },
   {
     title: 'Drinks Menu',
-    href: null,
+    href: '/drinks_menu.pdf',
   },
 ]
 
