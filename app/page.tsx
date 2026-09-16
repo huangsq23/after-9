@@ -105,7 +105,7 @@ export default function HomePage() {
                   Nestled in the heart of Newcastle's vibrant Chinatown, After 9 is where premium karaoke suites meet fine late-night dining. Whether you're celebrating, socialising, or simply seeking something special — every visit is an occasion.
                 </p>
                 <p className="text-text-muted leading-relaxed mb-8 text-sm">
-                  Open every night from 5PM until 2AM, we offer beautifully appointed private karaoke rooms alongside an expertly crafted dining menu — all under one roof on Stowell Street.
+                  Open Monday and Wednesday to Sunday from 5PM until 2AM, we offer beautifully appointed private karaoke rooms alongside an expertly crafted dining menu — all under one roof on Stowell Street.
                 </p>
               </div>
               <VenueCarousel />
@@ -161,13 +161,13 @@ export default function HomePage() {
                       Authentic Chinese Dining
                     </h3>
                     <p className="text-text-muted text-sm leading-relaxed mb-8">
-                      Explore our unique selection of Chinese dishes, crafted for sharing and perfect for any occasion. Open every night and served until 2AM.
+                      Explore our unique selection of Chinese dishes, crafted for sharing and perfect for any occasion. Open Mon & Wed–Sun until 2AM.
                     </p>
                     <ul className="flex flex-col gap-3 mb-auto">
                       {[
                         'No deposit required',
                         'Dietary requirements catered for',
-                        'Available every night 17:00 – 02:00',
+                        'Open Mon & Wed–Sun 17:00 – 02:00',
                         'Large group seating available',
                       ].map(f => (
                         <li key={f} className="flex items-start gap-3 text-text-muted text-sm">
@@ -266,7 +266,8 @@ export default function HomePage() {
                 </p>
                 <p className="text-foreground text-sm">
                   17:00 – 02:00<br />
-                  <span className="text-text-muted">Mon – Sun</span>
+                  <span className="text-text-muted">Mon &amp; Wed – Sun</span><br />
+                  <span className="text-text-dim text-xs">Closed Tuesdays</span>
                 </p>
               </div>
               <div className="flex flex-col items-center gap-3">

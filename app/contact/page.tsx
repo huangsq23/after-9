@@ -64,7 +64,7 @@ const contactItems = [
   {
     icon: <Clock size={16} />,
     label: 'Opening Hours',
-    content: <span>17:00 – 02:00 &nbsp;·&nbsp; Mon – Sun</span>,
+    content: <span>17:00 – 02:00 &nbsp;·&nbsp; Mon &amp; Wed – Sun<br /><span style={{ fontSize: '0.8125rem', color: 'var(--text-dim)' }}>Closed Tuesdays</span></span>,
   },
 ]
 

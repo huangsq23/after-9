@@ -172,8 +172,7 @@ export default function KaraokePage() {
       {/* Booking Form */}
       <div className="max-w-3xl mx-auto px-6 pb-16">
         <p className="text-text-muted text-sm mb-8" style={{ lineHeight: 1.6 }}>
-          Opening hours: 17:00 – 02:00 · Bookings in 1-hour slots · We will contact you to confirm
-          your booking
+          Opening hours: 17:00 – 02:00 · Mon &amp; Wed – Sun · Bookings in 1-hour slots · We will contact you to confirm your booking
         </p>
 
         <form onSubmit={handleSubmit(onSubmit)}>

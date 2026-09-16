@@ -1,6 +1,6 @@
 'use client'
 
-const SEGMENT = 'BOOK YOUR KARAOKE ROOM ◆ DINE WITH US TONIGHT ◆ OPEN 5PM – 2AM ◆ '
+const SEGMENT = 'BOOK YOUR KARAOKE ROOM ◆ DINE WITH US TONIGHT ◆ OPEN 5PM – 2AM · CLOSED TUESDAYS ◆ '
 
 export default function Marquee() {
   return (
